@@ -13,7 +13,7 @@
          <nav class="nav-header navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
             
-                <a href="index.php?action=home" class="navbar-brand mx-auto"><!-- en attente d'une création de logo <img src=""></a> -->
+                <a href="index.php?action=home" class="navbar-brand mx-auto"><img src="public/images/jf-navbar.png"></a>
                 <button class="navbar-toggle navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
