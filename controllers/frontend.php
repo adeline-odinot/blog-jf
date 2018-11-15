@@ -1,8 +1,10 @@
 <?php
+
  // Chargement des classes
 require_once('models/ChapterManager.php');
 require_once('models/CommentManager.php');
- class FrontendController 
+
+class FrontendController 
 {
     public function chaptersBlockCharacter($chapters)
     {
@@ -50,5 +52,10 @@ require_once('models/CommentManager.php');
         $lastChapter = $chapterManager->getLastChapter();
          $newChapters = $this->chaptersBlockCharacter($lastChapter);
          require('view/frontend/homeView.php');
+    }
+
+    public function about()
+    {
+        require('view/frontend/aboutView.php');
     }
 }

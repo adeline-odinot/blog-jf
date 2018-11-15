@@ -188,3 +188,24 @@
 {
     color: #6e8bd1 !important;
 } 
+
+/* --- A PROPOS --- */
+ .img-jean
+{
+    width: 100% !important;
+    border: 1px solid #d0c9c9;
+    padding: 10px;
+}
+ .title-txt-about, .title-txt
+{
+    color: #8076b3;
+}
+ .title-txt-about
+{
+    font-size: 25px;
+}
+ .title-txt
+{
+    font-size: 20px;
+    font-weight: bold;
+}

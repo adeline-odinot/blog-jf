@@ -1,22 +1,28 @@
 <?php
 require('controllers/frontend.php');
- $frontendController = new FrontendController;
- try {
-    if (isset($_GET['action'])) 
+
+$frontendController = new FrontendController();
+
+try {
+    
+    $action = $_GET['action'];
+
+    switch ($action) 
     {
-        if ($_GET['action'] == 'chapter') 
-        {
+        case 'chapter':
+
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
-                $frontendController->chapter();
+                $frontendController->chapter($_GET['id'], $_GET['id']);
             }
             else 
             {
                 throw new Exception('Aucun identifiant de chapitre envoyé');
             }
-        }
-        elseif ($_GET['action'] == 'addComment') 
-        {
+            break;
+            
+        case 'addComment':
+
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) 
@@ -32,18 +38,21 @@ require('controllers/frontend.php');
             {
                 throw new Exception('Aucun identifiant de chapitre envoyé');
             }
-        }
-        elseif ($_GET['action'] == 'home') 
-        {
+            break;
+
+        case 'home':
             $frontendController->home();
-        }
-    }
-    else 
-    {
-        $frontendController->home();
+            break;
+
+        case 'about':
+            $frontendController->about();
+            break;
+            
+        default:
+            $frontendController->home();        
     }
 }
 catch(Exception $e) 
 {
     echo 'Erreur : ' . $e->getMessage();
-} 
+}
