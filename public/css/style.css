@@ -1,0 +1,190 @@
+/* --- GLOBAL --- */
+ a
+{
+    text-decoration: none;
+}
+ .container-fluid
+{
+    padding: 0px !important;
+}
+ .row
+{
+    margin: 0px !important;
+}
+ ul
+{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+ li
+{
+    list-style-type: none;
+    padding: 10px;
+}
+ .nav-item
+{
+    height: 59px;
+}
+ .nav-item:hover
+{
+    border-top: 1px solid white;
+    height: 58px;
+}
+ nav 
+{
+    padding: 0px !important;
+}
+ .underline 
+{
+    text-decoration: underline !important;
+}
+ .title-content
+{
+    text-decoration: underline;
+    color : #553c3c;
+    margin-bottom: 20px;
+}
+ blockquote 
+{
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #a1add0;
+    color: #3d3d3d;
+    background-color: #ddd7ff;
+}
+ h3 a
+{
+    color: #114e6b !important;
+}
+ .button-design
+{
+    color: white;
+    background-color: #122731;
+    border-radius: 3px;
+    padding: 10px;
+    border: 1px solid #122731;
+    margin: 20px;
+    cursor: pointer;
+}
+ .button-design:hover
+{
+    color: #122731;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #122731;
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+ .button-design
+{
+    margin-left: 0px !important;
+}
+ .content
+{
+    padding: 50px;
+}
+ .border-bottom
+{
+    width: 100%;
+}
+ .label-design
+{
+    color: #2d6fb5;
+}
+ .form-group
+{
+    width: 60%;
+}
+ /* --- HEADER --- */
+ .header
+{
+    background: url(../../public/images/header_alaska_img.jpg) no-repeat;
+    color: white;
+    width: 100%;
+}
+ h1 
+{
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+    margin-top: 60px !important;
+}
+ .title 
+{
+    padding: 100px 0px;
+}
+ /* --- HEADER ET FOOTER  --- */
+ .header a, .footer a
+{
+    color: white !important;
+}
+ .nav-header, .footer 
+{
+    background-color: #122731;
+}
+ .nav-header
+{
+    font-size: 16px;
+    z-index: 999;
+    width: 100%;
+}
+ /* --- FOOTER --- */
+ .footer
+{
+    width: 100%;
+    border: 1px solid black;
+}
+ .footer h4
+{
+    color: white;
+    font-size: 20px;
+}
+ .footer-informations
+{
+    padding: 10px;
+}
+ .footer p
+{
+    margin: 0px;
+ }
+ .footer p, .footer a, .footer li
+{
+    color: #ccd !important;
+}
+ .copyright
+{
+    border-top: 1px solid  black;
+    padding: 10px;
+}
+ /* --- ACCUEIL --- */
+ .author-sign 
+{
+    color: #4745b9;
+}
+ .showing
+{
+    padding: 20px;
+}
+ /* --- CHAPITRE ET COMMENTAIRES --- */
+ .comment
+{
+    padding: 5px;
+}
+ .font-size-comment
+{
+    font-size: 13px;
+}
+ .title-comment
+{
+    font-size: 22px;
+    margin: 20px;
+}
+ .author-comment, .title-comment
+{
+    color: #333462;
+}
+ .title-chapter, .title-chapter a
+{
+    color: #6e8bd1 !important;
+} 
