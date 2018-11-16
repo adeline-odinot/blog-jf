@@ -9,6 +9,11 @@ try {
 
     switch ($action) 
     {
+        case 'listChapters':
+
+            $frontendController->listChapters();
+            break;
+
         case 'chapter':
 
             if (isset($_GET['id']) && $_GET['id'] > 0) 

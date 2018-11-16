@@ -6,6 +6,16 @@ require_once('models/CommentManager.php');
 
 class FrontendController 
 {
+    public function listChapters()
+    {
+        $chapterManager = new \Forteroche\Models\ChapterManager();
+        $chapters = $chapterManager->getChapters();
+        
+        $newChapters = $this->chaptersBlockCharacter($chapters);
+
+        require('view/frontend/listChaptersView.php');
+    }
+    
     public function chaptersBlockCharacter($chapters)
     {
         $newChapters = [];
