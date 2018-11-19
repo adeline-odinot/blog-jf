@@ -68,4 +68,91 @@ class FrontendController
     {
         require('view/frontend/aboutView.php');
     }
+
+    public function contact()
+    {
+        require('view/frontend/contactView.php');
+    }
+    
+    public function formContact($name, $email, $phone, $message)
+    {
+        $array = array('name' => '', 'email' => '', 'phone' => '', 'message' => '', 'nameError' => '', 'emailError' => '', 'phoneError' => '', 'messageError' => '', 'isSuccess' => false);
+        $emailTo = 'adeline.odinot1997@gmail.com';
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        { 
+            $array['name'] = $this->test_input($name);
+            $array['email'] = $this->test_input($email);
+            $array['phone'] = $this->test_input($phone);
+            $array['message'] = $this->test_input($message);
+            $array['isSuccess'] = true; 
+            $emailText = '';
+
+            if (empty($array['name']))
+            {
+                $array['nameError'] = 'Vous devez entrer votre nom.';
+                $array['isSuccess'] = false; 
+            } 
+            else
+            {
+                $emailText .= 'Name: {$array["name"]}\n';
+            }
+
+            if(!$this->isEmail($array['email'])) 
+            {
+                $array['emailError'] = 'Vous devez entrer une adresse e-mail valide.';
+                $array['isSuccess'] = false; 
+            } 
+            else
+            {
+                $emailText .= 'Email: {$array["email"]}\n';
+            }
+
+            if (!$this->isPhone($array['phone']))
+            {
+                $array['phoneError'] = 'Vous devez entrer un numéro de téléphone valide.';
+                $array['isSuccess'] = false; 
+            }
+            else
+            {
+                $emailText .= 'Phone: {$array["phone"]}\n';
+            }
+
+            if (empty($array['message']))
+            {
+                $array['messageError'] = 'Vous devez entrer un message';
+                $array['isSuccess'] = false; 
+            }
+            else
+            {
+                $emailText .= 'Message: {$array["message"]}\n';
+            }
+            
+            if($array['isSuccess']) 
+            {
+                $headers = 'From: {$array["name"]} <{$array["email"]}>\r\nReply-To: {$array["email"]}';
+                mail($emailTo, 'Un message du site Jean FORTEROCHE', $emailText, $headers);
+            }
+
+            echo json_encode($array);
+        }
+    }
+
+    protected function isEmail($email) 
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+
+    protected function isPhone($phone) 
+    {
+        return preg_match('/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/m',$phone);
+    }
+
+    protected function test_input($data) 
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 }

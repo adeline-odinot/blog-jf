@@ -52,6 +52,15 @@ try {
         case 'about':
             $frontendController->about();
             break;
+
+        case 'contact':
+            $frontendController->contact();
+            break;
+
+        case 'verifContact':
+            $frontendController->formContact($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message']);
+            break;
+
             
         default:
             $frontendController->home();        

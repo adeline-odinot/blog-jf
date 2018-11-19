@@ -209,3 +209,39 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+/* -- FORM -- */
+
+.star-color, .error-message
+{
+    color: #ff6b6b;
+}
+
+.thank-you
+{
+    font-size: 20px;
+    padding: 10px;
+    font-size: 20px;
+    color: #122731;
+}
+
+/* --- CONTACT --- */
+
+.design-form
+{
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #d0c9c9;
+}
+
+/* -- MEDIA QUERIES -- */
+
+
+@media all and (max-width : 768px)
+{
+    .content 
+    {
+        padding: 10px;
+    }
+}
+
