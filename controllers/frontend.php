@@ -3,6 +3,7 @@
  // Chargement des classes
 require_once('models/ChapterManager.php');
 require_once('models/CommentManager.php');
+require_once('models/UserManager.php');
 
 class FrontendController 
 {
@@ -154,5 +155,46 @@ class FrontendController
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+
+    public function login()
+    {
+        require('view/frontend/loginView.php');
+    }
+
+    public function formLogin($user_pseudo, $user_password)
+    {
+        $userManager = new \Forteroche\Models\UserManager();
+
+        $user_id = $userManager->isExist($user_pseudo);
+
+        $login = array('id' => '', 'password' => '', 'messageError' => '', 'idError' => '', 'passwordError' => '', 'isSuccess' => false);
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        { 
+            $login['id'] = $this->test_input($user_pseudo);
+            $login['password'] = $this->test_input($user_password);
+            $login['isSuccess'] = true;
+
+            if (empty($login['id']))
+            {
+                $login['idError'] = 'Vous devez entrer votre identifiant.';
+                $login['isSuccess'] = false; 
+            }
+            if (empty($login['password']))
+            {
+                $login['passwordError'] = 'Vous devez entrer votre mot de passe.';
+                $login['isSuccess'] = false; 
+            }
+            if (!empty($login['id']) && (!empty($login['password'])))
+            {
+                if (($user_id < 0) || (!password_verify($user_password, $user_id)))
+                {
+                    $login['messageError'] = 'Votre identifiant ou votre mot de passe est incorrect.';
+                    $login['isSuccess'] = false; 
+                }
+            }
+            echo json_encode($login);
+        }
     }
 }

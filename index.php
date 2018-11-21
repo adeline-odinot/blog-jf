@@ -61,6 +61,14 @@ try {
             $frontendController->formContact($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message']);
             break;
 
+        case 'login':
+            $frontendController->login();
+            break;
+        
+        case 'verifLogin':
+            $frontendController->formLogin($_POST['id'], $_POST['pass']);
+            break;
+        
             
         default:
             $frontendController->home();        
