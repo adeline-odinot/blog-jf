@@ -197,4 +197,9 @@ class FrontendController
             echo json_encode($login);
         }
     }
+    
+    public function legalNotice()
+    {
+        require('view/frontend/legalNoticeView.php');
+    }
 }

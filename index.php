@@ -68,7 +68,10 @@ try {
         case 'verifLogin':
             $frontendController->formLogin($_POST['id'], $_POST['pass']);
             break;
-        
+
+        case 'legalNotice':
+            $frontendController->legalNotice();
+            break;
             
         default:
             $frontendController->home();        
