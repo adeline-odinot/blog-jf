@@ -1,6 +1,8 @@
-<?php $title = 'Billet simple pour l\'Alaska | Accueil'; ?>
- <?php ob_start(); ?>
- <?php
+<?php $title = 'Accueil'; ?>
+
+<?php ob_start(); ?>
+
+<?php
 ?>  
     <div class="text-center showing">
         <h2 class="title-content">Bienvenue sur mon blog</h2>
@@ -11,32 +13,42 @@
         <em class="author-sign">Jean FORTEROCHE</em>
     </div>
     <h2 class="text-center title-content">Mon dernier chapitre</h2>
-     <?php
-    foreach($newChapters as $chapter)
-    {
-    ?>
+
     <div class="row showing">
         <div class="col-md-12 d-flex flex-column align-items-center">
             <div class="text-center">
                 <h3 class="title-chapter">
-                        <a href="index.php?action=chapter&amp;id=<?= $chapter['id'] ?>">
-                        <?= htmlspecialchars($chapter['title']) ?>
+                        <a href="index.php?action=chapter&amp;id=<?= $lastChapter->getId() ?>">
+                        <?= htmlspecialchars($lastChapter->getTitle()) ?>
                     </a>
                 </h3>
             
                 <p>
-                    <?= nl2br(htmlspecialchars($chapter['content'])) ?>
+                    <?php
+                        if (strlen($lastChapter->getContent()) <= 400)
+                        {
+                            $content = $lastChapter->getContent();
+                        }
+                        
+                        else
+                        {
+                            $start = substr($lastChapter->getContent(), 0, 400);
+                            $start = substr($start, 0, strrpos($start, ' ')) . ' [...]';
+                            
+                            $content = $start;
+                        }
+                        echo $content;
+                    ?>
                     <br />
-                    <em><a href="index.php?action=chapter&amp;id=<?= htmlspecialchars($chapter['id']) ?>">Lire la suite</a></em>
+                    <em><a href="index.php?action=chapter&amp;id=<?= htmlspecialchars($lastChapter->getId()) ?>">Lire la suite</a></em>
                 </p>
             </div>
                 <blockquote>
-                    <p>Publié le <?= htmlspecialchars($chapter['creation_date_fr']) ?> par <?= htmlspecialchars($chapter['author']) ?></p>
+                    <p>Publié le <?= htmlspecialchars($lastChapter->getCreation_date_fr()) ?> par <?= htmlspecialchars($lastChapter->getAuthor()) ?></p>
                 </blockquote>
         </div>
     </div>
-    <?php
-    }
-    ?>
- <?php $content = ob_get_clean(); ?>
- <?php require('template.php'); ?> 
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>

@@ -11,58 +11,47 @@ class FrontendController
     {
         $chapterManager = new \Forteroche\Models\ChapterManager();
         $chapters = $chapterManager->getChapters();
-        
-        $newChapters = $this->chaptersBlockCharacter($chapters);
 
         require('view/frontend/listChaptersView.php');
     }
     
-    public function chaptersBlockCharacter($chapters)
-    {
-        $newChapters = [];
-        $i = 0;
-         while ($data = $chapters->fetch())
-        {
-            $newChapters[$i]['id'] = $data['id'];
-            if (strlen($data['content'])>400) 
-            {
-                $data['content']=substr($data['content'], 0, 400);
-                $dernier_mot=strrpos($data['content']," ");
-                $data['content']=substr($data['content'],0,$dernier_mot);
-            }
-            $newChapters[$i]['content'] = $data['content'];
-            $newChapters[$i]['title'] = $data['title'];
-            $newChapters[$i]['author'] = $data['author'];
-            $newChapters[$i]['creation_date_fr'] = $data['creation_date_fr'];
-             $i++;
-        }
-        return $newChapters;
-    }
-     public function chapter()
+    public function chapter($chapterId)
     {
         $chapterManager = new \Forteroche\Models\ChapterManager();
         $commentManager = new \Forteroche\Models\CommentManager();
-         $chapter = $chapterManager->getChapter($_GET['id']);
-        $comments = $commentManager->getComments($_GET['id']);
-         require('view/frontend/chapterView.php');
+
+        $chapter = $chapterManager->getChapter($chapterId);
+        $comments = $commentManager->getComments($chapterId);
+
+        require('view/frontend/chapterView.php');
     }
-     public function addComment($chapterId, $author, $comment)
+
+    public function addComment($chapterId, $author, $comment_content)
     {
         $commentManager = new \Forteroche\Models\CommentManager();
-         $affectedLines = $commentManager->chapterComment($chapterId, $author, $comment);
-         if ($affectedLines === false) {
+
+        $arrayComment = array('chapter_id' => $chapterId, 'author' => $author, 'comment' => $comment_content);
+
+        $comment = new \Forteroche\Models\Comment($arrayComment);
+
+        $affectedLines = $commentManager->chapterComment($comment);
+
+        if ($affectedLines === false) 
+        {
             throw new Exception('Impossible d\'ajouter le commentaire !');
         }
-        else {
+        else 
+        {
             header('Location: index.php?action=chapter&id=' . $chapterId);
         }
     }
-     public function home()
+
+    public function home()
     {
         $chapterManager = new \Forteroche\Models\ChapterManager();
         $lastChapter = $chapterManager->getLastChapter();
-         $newChapters = $this->chaptersBlockCharacter($lastChapter);
-         require('view/frontend/homeView.php');
+
+        require('view/frontend/homeView.php');
     }
 
     public function about()
@@ -77,65 +66,65 @@ class FrontendController
     
     public function formContact($name, $email, $phone, $message)
     {
-        $array = array('name' => '', 'email' => '', 'phone' => '', 'message' => '', 'nameError' => '', 'emailError' => '', 'phoneError' => '', 'messageError' => '', 'isSuccess' => false);
+        $contact = array('name' => '', 'email' => '', 'phone' => '', 'message' => '', 'nameError' => '', 'emailError' => '', 'phoneError' => '', 'messageError' => '', 'isSuccess' => false);
         $emailTo = 'adeline.odinot1997@gmail.com';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         { 
-            $array['name'] = $this->test_input($name);
-            $array['email'] = $this->test_input($email);
-            $array['phone'] = $this->test_input($phone);
-            $array['message'] = $this->test_input($message);
-            $array['isSuccess'] = true; 
+            $contact['name'] = $this->test_input($name);
+            $contact['email'] = $this->test_input($email);
+            $contact['phone'] = $this->test_input($phone);
+            $contact['message'] = $this->test_input($message);
+            $contact['isSuccess'] = true; 
             $emailText = '';
 
-            if (empty($array['name']))
+            if (empty($contact['name']))
             {
-                $array['nameError'] = 'Vous devez entrer votre nom.';
-                $array['isSuccess'] = false; 
+                $contact['nameError'] = 'Vous devez entrer votre nom.';
+                $contact['isSuccess'] = false; 
             } 
             else
             {
-                $emailText .= 'Name: {$array["name"]}\n';
+                $emailText .= 'Name: {$contact["name"]}\n';
             }
 
-            if(!$this->isEmail($array['email'])) 
+            if(!$this->isEmail($contact['email'])) 
             {
-                $array['emailError'] = 'Vous devez entrer une adresse e-mail valide.';
-                $array['isSuccess'] = false; 
+                $contact['emailError'] = 'Vous devez entrer une adresse e-mail valide.';
+                $contact['isSuccess'] = false; 
             } 
             else
             {
-                $emailText .= 'Email: {$array["email"]}\n';
+                $emailText .= 'Email: {$contact["email"]}\n';
             }
 
-            if (!$this->isPhone($array['phone']))
+            if (!$this->isPhone($contact['phone']))
             {
-                $array['phoneError'] = 'Vous devez entrer un numéro de téléphone valide.';
-                $array['isSuccess'] = false; 
+                $contact['phoneError'] = 'Vous devez entrer un numéro de téléphone valide.';
+                $contact['isSuccess'] = false; 
             }
             else
             {
-                $emailText .= 'Phone: {$array["phone"]}\n';
+                $emailText .= 'Phone: {$contact["phone"]}\n';
             }
 
-            if (empty($array['message']))
+            if (empty($contact['message']))
             {
-                $array['messageError'] = 'Vous devez entrer un message';
-                $array['isSuccess'] = false; 
+                $contact['messageError'] = 'Vous devez entrer un message.';
+                $contact['isSuccess'] = false; 
             }
             else
             {
-                $emailText .= 'Message: {$array["message"]}\n';
+                $emailText .= 'Message: {$contact["message"]}\n';
             }
             
-            if($array['isSuccess']) 
+            if($contact['isSuccess']) 
             {
-                $headers = 'From: {$array["name"]} <{$array["email"]}>\r\nReply-To: {$array["email"]}';
+                $headers = 'From: {$contact["name"]} <{$contact["email"]}>\r\nReply-To: {$contact["email"]}';
                 mail($emailTo, 'Un message du site Jean FORTEROCHE', $emailText, $headers);
             }
 
-            echo json_encode($array);
+            echo json_encode($contact);
         }
     }
 
