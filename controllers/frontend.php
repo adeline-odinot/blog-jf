@@ -4,6 +4,7 @@
 require_once('models/ChapterManager.php');
 require_once('models/CommentManager.php');
 require_once('models/UserManager.php');
+require_once('models/ReportManager.php');
 
 class FrontendController 
 {
@@ -190,5 +191,38 @@ class FrontendController
     public function legalNotice()
     {
         require('view/frontend/legalNoticeView.php');
+    }
+
+    public function commentReport($id_comment)
+    {
+        $reportManager = new \Forteroche\Models\ReportManager();
+        $arrayReport = array('id_comment' => $id_comment);
+        $report = new \Forteroche\Models\Report($arrayReport);
+        $reportManager->addReport($report);
+
+        if ($report)
+        {
+            $archive = $this->nbReport($id_comment);
+            echo true;
+        }
+        else
+        {
+            throw new Exception('Impossible de signaler le commentaire !');
+        }
+    }
+
+    public function nbReport($id_comment)
+    {
+
+        $reportManager = new \Forteroche\Models\ReportManager();
+        $arrayReport = array('id_comment' => $id_comment);
+        $report = new \Forteroche\Models\Report($arrayReport);
+        $nbReport = $reportManager->getNbReport($report);
+        $commentManager = new \Forteroche\Models\CommentManager();
+
+        if ($nbReport >= 10)
+        {
+            $archive = $commentManager->archive($commentManager->getComment($id_comment));
+        }
     }
 }

@@ -72,6 +72,11 @@ try {
         case 'legalNotice':
             $frontendController->legalNotice();
             break;
+
+        case 'report':
+            $frontendController->commentReport($_GET['id_comment']);
+            break;
+        
             
         default:
             $frontendController->home();        

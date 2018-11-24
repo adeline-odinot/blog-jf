@@ -19,13 +19,19 @@
 
 <h2 class="text-center title-comment underline">Laisser un commentaire : </h2>
 
-<form action="index.php?action=addComment&amp;id=<?= $chapter->getId() ?>" method="post" class="d-flex flex-column align-items-center form-comment">
+<form action="index.php?action=addComment&amp;id=<?= $chapter->getId() ?>" method="post" class="d-flex flex-column align-items-center form-comment add-comment">
     <div class="form-group">
-        <label class="label-design" for="author">Nom : </label><br />
-        <input type="text" class="form-control" id="author" name="author" placeholder="Votre nom"/>
-        <label class="label-design" for="comment">Commentaire : </label><br />
-        <textarea id="comment" class="form-control" name="comment" placeholder="Votre commentaire" rows="4"></textarea>
-        <input class="button-design" type="submit" value="Commenter"/>
+        <div>
+            <label class="label-design" for="author">Nom : <span class="star-color">*</span></label><br />
+            <input type="text" class="form-control" id="author" name="author" placeholder="Votre nom" value="<?php if(isset($_COOKIE['author'])) { echo htmlspecialchars($_COOKIE['author']); }?>"/><br />
+            <p id="authorError" class="error-message"></p>
+        </div>
+       <div>
+            <label class="label-design" for="comment">Commentaire : <span class="star-color">*</span></label><br />
+            <textarea id="comment" class="form-control" name="comment" placeholder="Votre commentaire" rows="4"></textarea><br />
+            <p id="commentError" class="error-message"></p>
+       </div>
+        <input class="button-design" type="submit" value="Commenter" onclick="addCommentForm(<?= $chapter->getId() ?>)"/>
         <div class="border-bottom border-secondary"></div>
     <div>
 </form>
@@ -38,7 +44,7 @@ foreach ($comments as $comment)
             <p class="author-comment"><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong></p>
             <p class="font-size-comment label-design"><em>Le <?= $comment->getComment_date() ?></em></p>
             <p><?= nl2br(htmlspecialchars($comment->getComment())) ?></p>
-            <p class="button-design" id="report"><em>Signaler le commentaire</em></p>
+            <p class="button-design" id="report-<?= $comment->getId() ?>" onclick="report(<?= $comment->getId() ?>)"><em>Signaler le commentaire</em></p>
         </div>
         <div class="border-bottom border-secondary"></div>
     </div>
