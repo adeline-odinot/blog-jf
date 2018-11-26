@@ -28,22 +28,38 @@ class FrontendController
     }
 
     public function addComment($chapterId, $author, $comment_content)
-    {
-        $commentManager = new \Forteroche\Models\CommentManager();
+    {       
+        $addCommentMsg = array('authorError' => '', 'commentError' => '','isSuccess' => false);
 
-        $arrayComment = array('chapter_id' => $chapterId, 'author' => $author, 'comment' => $comment_content);
+        $addCommentMsg['isSuccess'] = true;
 
-        $comment = new \Forteroche\Models\Comment($arrayComment);
-
-        $affectedLines = $commentManager->chapterComment($comment);
-
-        if ($affectedLines === false) 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
-        }
-        else 
-        {
-            header('Location: index.php?action=chapter&id=' . $chapterId);
+            if (empty($author))
+            {
+                $addCommentMsg['authorError'] = 'Vous devez entrer votre nom.';
+                $addCommentMsg['isSuccess'] = false; 
+            }
+
+            if (empty($comment_content))
+            {
+                $addCommentMsg['commentError'] = 'Vous devez entrer votre commentaire.';
+                $addCommentMsg['isSuccess'] = false; 
+            }
+
+            if($addCommentMsg['isSuccess'])  
+            {
+                $commentManager = new \Forteroche\Models\CommentManager();
+
+                $arrayComment = array('chapter_id' => $chapterId, 'author' => $author, 'comment' => $comment_content);
+        
+                $comment = new \Forteroche\Models\Comment($arrayComment);
+        
+                $commentManager->chapterComment($comment);
+
+                setcookie('author', $_POST['author'], time() + 365*24*3600, null, null, false, true);
+            }
+            echo json_encode($addCommentMsg);
         }
     }
 
