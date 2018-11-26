@@ -1,12 +1,12 @@
 <?php
 
- // Chargement des classes
-require_once('models/ChapterManager.php');
-require_once('models/CommentManager.php');
-require_once('models/UserManager.php');
-require_once('models/ReportManager.php');
+// Chargement des classes
+require_once('models/frontend/ChapterManager.php');
+require_once('models/frontend/CommentManager.php');
+require_once('models/frontend/UserManager.php');
+require_once('models/frontend/ReportManager.php');
 
-class FrontendController 
+class FrontendController
 {
     public function listChapters()
     {
@@ -15,7 +15,7 @@ class FrontendController
 
         require('view/frontend/listChaptersView.php');
     }
-    
+
     public function chapter($chapterId)
     {
         $chapterManager = new \Forteroche\Models\ChapterManager();
@@ -74,6 +74,52 @@ class FrontendController
     public function about()
     {
         require('view/frontend/aboutView.php');
+    }
+    
+    public function login()
+    {
+        require('view/frontend/loginView.php');
+    }
+
+    public function formLogin($user_pseudo, $user_password)
+    {
+        $userManager = new \Forteroche\Models\UserManager();
+
+        $user_id = $userManager->isExist($user_pseudo);
+
+        $login = array('id' => '', 'password' => '', 'messageError' => '', 'idError' => '', 'passwordError' => '', 'isSuccess' => false);
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        { 
+            $login['id'] = $this->test_input($user_pseudo);
+            $login['password'] = $this->test_input($user_password);
+            $login['isSuccess'] = true;
+
+            if (empty($login['id']))
+            {
+                $login['idError'] = 'Vous devez entrer votre identifiant.';
+                $login['isSuccess'] = false; 
+            }
+            if (empty($login['password']))
+            {
+                $login['passwordError'] = 'Vous devez entrer votre mot de passe.';
+                $login['isSuccess'] = false; 
+            }
+            if (!empty($login['id']) && (!empty($login['password'])))
+            {
+                if (($user_id < 0) || (!password_verify($user_password, $user_id)))
+                {
+                    $login['messageError'] = 'Votre identifiant ou votre mot de passe est incorrect.';
+                    $login['isSuccess'] = false; 
+                }
+            }
+            echo json_encode($login);
+        }
+    }
+
+    public function legalNotice()
+    {
+        require('view/frontend/legalNoticeView.php');
     }
 
     public function contact()
@@ -161,52 +207,6 @@ class FrontendController
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
-    }
-
-    public function login()
-    {
-        require('view/frontend/loginView.php');
-    }
-
-    public function formLogin($user_pseudo, $user_password)
-    {
-        $userManager = new \Forteroche\Models\UserManager();
-
-        $user_id = $userManager->isExist($user_pseudo);
-
-        $login = array('id' => '', 'password' => '', 'messageError' => '', 'idError' => '', 'passwordError' => '', 'isSuccess' => false);
-        
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-        { 
-            $login['id'] = $this->test_input($user_pseudo);
-            $login['password'] = $this->test_input($user_password);
-            $login['isSuccess'] = true;
-
-            if (empty($login['id']))
-            {
-                $login['idError'] = 'Vous devez entrer votre identifiant.';
-                $login['isSuccess'] = false; 
-            }
-            if (empty($login['password']))
-            {
-                $login['passwordError'] = 'Vous devez entrer votre mot de passe.';
-                $login['isSuccess'] = false; 
-            }
-            if (!empty($login['id']) && (!empty($login['password'])))
-            {
-                if (($user_id < 0) || (!password_verify($user_password, $user_id)))
-                {
-                    $login['messageError'] = 'Votre identifiant ou votre mot de passe est incorrect.';
-                    $login['isSuccess'] = false; 
-                }
-            }
-            echo json_encode($login);
-        }
-    }
-    
-    public function legalNotice()
-    {
-        require('view/frontend/legalNoticeView.php');
     }
 
     public function commentReport($id_comment)

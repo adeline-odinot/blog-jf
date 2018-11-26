@@ -1,4 +1,4 @@
-<?php $title = 'Billet simple pour l\'Alaska | À propos'; ?>
+<?php $title = 'À propos'; ?>
 
 <?php ob_start(); ?>
 
@@ -31,4 +31,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template/template.php'); ?>

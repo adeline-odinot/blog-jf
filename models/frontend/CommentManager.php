@@ -1,10 +1,11 @@
 <?php
 
- namespace Forteroche\Models;
- require_once("models/Manager.php");
- require_once("models/Comment.php");
+namespace Forteroche\Models;
 
- class CommentManager extends Manager
+require_once("models/Manager.php");
+require_once("models/Comment.php");
+
+class CommentManager extends Manager
 {
     public function getComments($chapterId)
     {
@@ -22,6 +23,18 @@
         return $comment;
     }
 
+    public function getComment($id)
+    {
+        $db = $this->dbConnect();
+        $comment = $db->prepare('SELECT * FROM comments WHERE id = :id');
+        $comment->bindValue(':id', $id, \PDO::PARAM_INT);
+        $comment->execute();
+
+        $data = $comment->fetch(\PDO::FETCH_ASSOC);
+    
+        return new Comment($data);
+    }
+
     public function chapterComment($comment)
     {
         $db = $this->dbConnect();
@@ -30,4 +43,13 @@
 
         return $affectedLines;
     }
-} 
+
+    public function archive($comments)
+    {
+        $db = $this->dbConnect();
+        $archive = $db->prepare('UPDATE comments SET archive = 1 WHERE id = :id');
+        $archive->bindValue(':id', $comments->getId(), \PDO::PARAM_INT);
+        $archive->execute();
+        return $archive;
+    }
+}

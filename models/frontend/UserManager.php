@@ -2,7 +2,7 @@
 
 namespace Forteroche\Models;
 
-require_once("Manager.php");
+require_once("models/Manager.php");
 
 class UserManager extends Manager
 {

@@ -1,4 +1,4 @@
-<?php $title = 'Billet simple pour l\'Alaska | Connexion'; ?>
+<?php $title = 'Connexion'; ?>
 
 <?php ob_start(); ?>
 
@@ -9,12 +9,12 @@
     <div class="form-group design-form">
         <p id="messageError" class="error-message"></p>
         <div>
-            <label class="label-design" for="id">Identifiant : </label><br />
+            <label class="label-design" for="id">Identifiant : <span class="star-color">*</span></label><br />
             <input type="text" class="form-control" id="id" name="id" placeholder="Entrez votre identifiant"/><br />
             <p id="idError" class="error-message"></p>
         </div>
         <div>
-            <label class="label-design" for="pass">Mot de passe : </label><br />
+            <label class="label-design" for="pass">Mot de passe : <span class="star-color">*</span></label><br />
             <input type="password" class="form-control" id="mdp" name="pass" placeholder="Entrez votre mot de passe"/><br />
             <p id="passwordError" class="error-message"></p>
         </div>
@@ -31,4 +31,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template/template.php'); ?>

@@ -1,5 +1,5 @@
 <?php
-require('controllers/frontend.php');
+require('controllers/frontend/frontend.php');
 
 $frontendController = new FrontendController();
 
@@ -27,8 +27,8 @@ try {
             break;
             
         case 'verifAddComment':
-                $frontendController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-                break;
+            $frontendController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+            break;
 
         case 'home':
             $frontendController->home();

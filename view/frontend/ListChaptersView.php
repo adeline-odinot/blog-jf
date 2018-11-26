@@ -45,4 +45,4 @@ foreach ($chapters as $chapter)
 ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template/template.php'); ?>

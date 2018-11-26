@@ -1,4 +1,4 @@
-<?php $title = 'Billet simple pour l\'Alaska | Inscription'; ?>
+<?php $title = 'Mentions légales'; ?>
 
 <?php ob_start(); ?>
 
@@ -227,4 +227,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template/template.php'); ?>
