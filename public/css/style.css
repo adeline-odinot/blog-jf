@@ -240,6 +240,40 @@
     border: 1px solid #d0c9c9;
 }
 
+/* -- ADMIN --*/
+
+.fas
+{
+    cursor: pointer;
+}
+
+.title-admin
+{
+    font-size: 25px;
+}
+
+.title-admin, .fas
+{
+    color: #6e8bd1 !important;
+}
+
+.table-design
+{
+    background-color: #122731;
+    color: white;
+
+}
+
+.table-bordered td
+{
+    border: 1px solid #ded5d5 !important;
+}
+
+.table-bordered th
+{
+     border: 1px solid #656565!important
+}
+
 /* -- MEDIA QUERIES -- */
 
 

@@ -1,7 +1,9 @@
 <?php
 require('controllers/frontend/frontend.php');
+require('controllers/backend/backend.php');
 
 $frontendController = new FrontendController();
+$backendController = new BackendController();
 
 try {
     
@@ -61,8 +63,13 @@ try {
         case 'report':
             $frontendController->commentReport($_GET['id_comment']);
             break;
-        
-            
+
+        // BACKEND
+
+        case 'admin':
+            $backendController->admin();
+            break;
+    
         default:
             $frontendController->home();        
     }
