@@ -49,7 +49,7 @@
     </table>
 </div>
 
-<a href="#">
+<a href="index.php?action=addChapter">
     <input class="button-design" type="submit" value="Ajouter un chapitre"/>
 </a>
 

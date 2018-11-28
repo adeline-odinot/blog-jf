@@ -70,6 +70,14 @@ try {
             $backendController->admin();
             break;
     
+        case 'addChapter':
+            $backendController->addChapterView();
+            break;
+            
+        case 'verifAddChapter':
+            $backendController->addChapter($_POST['title'], $_POST['content'], $_POST['author']);
+            break;    
+
         default:
             $frontendController->home();        
     }
