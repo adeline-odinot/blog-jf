@@ -65,4 +65,54 @@ class BackendController
     {
         require('view/backend/addChapterView.php');
     }
+
+    public function chapterEdit($title, $content, $author, $id)
+    {       
+        $chapterAdminManager = new \Forteroche\Models\ChapterAdminManager();
+
+        $editChapterMsg = array('titleError' => '', 'contentError' => '',  'authorError' => '', 'isSuccess' => false);
+
+        $editChapterMsg['isSuccess'] = true;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            if (empty($title))
+            {
+                $editChapterMsg['titleError'] = 'Vous devez entrer le titre du chapitre.';
+                $editChapterMsg['isSuccess'] = false; 
+            }
+
+            if (empty($content))
+            {
+                $editChapterMsg['contentError'] = 'Vous devez entrer le texte du chapitre.';
+                $editChapterMsg['isSuccess'] = false; 
+            }
+
+            if (empty($author))
+            {
+                $editChapterMsg['authorError'] = 'Vous devez entrer l\'auteur du chapitre.';
+                $editChapterMsg['isSuccess'] = false; 
+            }
+
+            if($editChapterMsg['isSuccess'])  
+            {
+                $chapterAdminManager = new \Forteroche\Models\ChapterAdminManager();
+
+                $arrayUpdateChapter = array('title' => $title, 'content' => $content, 'author' => $author, 'id' => $id);
+        
+                $chapter = new \Forteroche\Models\Chapter($arrayUpdateChapter);
+        
+                $updateAdminChapter = $chapterAdminManager->updateChapter($chapter);
+            }
+            echo json_encode($editChapterMsg);
+        }
+    }
+
+    public function chapterEditView($id)
+    {
+        $chapterManager = new \Forteroche\Models\ChapterManager();
+        $chapters = $chapterManager->getChapter($id);
+
+        require('view/backend/chapterEditView.php');
+    }
 }

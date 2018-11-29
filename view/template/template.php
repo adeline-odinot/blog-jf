@@ -92,6 +92,7 @@
         <script src="./public/js/loginForm.js" async></script>
         <script src="./public/js/addChapterForm.js" async></script>
         <script src="./public/js/report.js" async></script>
+        <script src="./public/js/editChapterForm.js" async></script>
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
     </body>

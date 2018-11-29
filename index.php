@@ -76,7 +76,15 @@ try {
             
         case 'verifAddChapter':
             $backendController->addChapter($_POST['title'], $_POST['content'], $_POST['author']);
-            break;    
+            break;
+            
+        case 'chapterEdit':
+            $backendController->chapterEditView($_GET['id']);
+            break;
+
+        case 'verifChapterEdit':
+            $backendController->chapterEdit($_POST['title'], $_POST['content'], $_POST['author'], $_GET['id']);
+            break;
 
         default:
             $frontendController->home();        

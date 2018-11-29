@@ -33,7 +33,7 @@
                     ?>
                 </td>
                 <td>
-                    <a href="#">
+                    <a href="index.php?action=chapterEdit&amp;id=<?= $chapter->getId() ?>">
                         <i class="fas fa-edit"></i>
                     </a>
                 </td>

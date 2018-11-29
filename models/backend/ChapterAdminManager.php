@@ -18,4 +18,17 @@ class ChapterAdminManager extends Manager
 
         return $req;
     }
+
+    public function updateChapter($updateChapter)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE chapters SET title = :title, content = :content, author = :author, update_date = NOW() WHERE id = :id');
+        $req->bindValue(':title', $updateChapter->getTitle(), \PDO::PARAM_STR);
+        $req->bindValue(':content', $updateChapter->getContent(), \PDO::PARAM_STR);
+        $req->bindValue(':author', $updateChapter->getAuthor(), \PDO::PARAM_STR);
+        $req->bindValue(':id', $updateChapter->getId(), \PDO::PARAM_INT);
+        $req->execute();
+
+        return $req;
+    }
 }
