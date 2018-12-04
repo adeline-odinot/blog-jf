@@ -22,7 +22,7 @@
             <td><?= htmlspecialchars($comment->getComment()) ?></td>
             <td><?= htmlspecialchars($comment->getNb_report()) ?></td>
             <td>
-                <a href="#">
+                <a href="index.php?action=commentEdit&amp;id=<?= $comment->getId() ?>">
                     <i class="fas fa-edit"></i>
                 </a>
             </td>

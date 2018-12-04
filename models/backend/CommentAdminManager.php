@@ -22,4 +22,16 @@ class CommentAdminManager extends Manager
     
         return $comment;
     }
+
+    public function updateComment($update)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE comments SET author = :author, comment = :comment WHERE id = :id');
+        $req->bindValue(':author', $update->getAuthor(), \PDO::PARAM_STR);
+        $req->bindValue(':comment', $update->getComment(), \PDO::PARAM_STR);
+        $req->bindValue(':id', $update->getId(), \PDO::PARAM_INT);
+        $req->execute();
+
+        return $req;
+    }
 }

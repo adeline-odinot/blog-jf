@@ -86,6 +86,14 @@ try {
             $backendController->chapterEdit($_POST['title'], $_POST['content'], $_POST['author'], $_GET['id']);
             break;
 
+        case 'commentEdit':
+            $backendController->commentEditView($_GET['id']);
+            break;
+
+        case 'verifCommentEdit':
+            $backendController->commentEdit($_POST['author'], $_POST['comment'], $_GET['id']);
+            break;
+
         default:
             $frontendController->home();        
     }

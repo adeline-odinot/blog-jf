@@ -115,4 +115,48 @@ class BackendController
 
         require('view/backend/chapterEditView.php');
     }
+
+    public function commentEditView($id)
+    {   
+        $commentManager = new \Forteroche\Models\CommentManager();
+        $comment = $commentManager->getComment($id);
+
+        require('view/backend/commentEditView.php');
+    }
+
+    public function commentEdit($author, $comment, $id)
+    {       
+        $commentAdminManager = new \Forteroche\Models\CommentAdminManager();
+
+        $editCommentMsg = array('authorError' => '', 'commentError' => '','isSuccess' => false);
+
+        $editCommentMsg['isSuccess'] = true;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            if (empty($author))
+            {
+                $editCommentMsg['authorError'] = 'Vous devez entrer l\'auteur du commentaire.';
+                $editCommentMsg['isSuccess'] = false; 
+            }
+
+            if (empty($comment))
+            {
+                $editCommentMsg['commentError'] = 'Vous devez entrer le commentaire.';
+                $editCommentMsg['isSuccess'] = false; 
+            }
+
+            if($editCommentMsg['isSuccess'])  
+            {
+                $commentAdminManager = new \Forteroche\Models\CommentAdminManager();
+
+                $arrayUpdateComment = array('author' => $author, 'comment' => $comment, 'id' => $id);
+        
+                $comment = new \Forteroche\Models\Comment($arrayUpdateComment);
+        
+                $updateAdminComment = $commentAdminManager->updateComment($comment);
+            }
+            echo json_encode($editCommentMsg);
+        }
+    }
 }
