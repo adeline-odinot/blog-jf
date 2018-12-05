@@ -94,6 +94,11 @@ try {
             $backendController->commentEdit($_POST['author'], $_POST['comment'], $_GET['id']);
             break;
 
+        case 'deleteChapter':
+            $backendController->deleteChapter($_GET['id']);
+            break;
+
+
         default:
             $frontendController->home();        
     }

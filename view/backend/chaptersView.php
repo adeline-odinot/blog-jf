@@ -17,7 +17,7 @@
             foreach ($chapters as $chapter)
             {
             ?>
-            <tr class="text-center">
+            <tr class="text-center" id="delete-<?= $chapter->getId() ?>">
                 <td><?= htmlspecialchars($chapter->getTitle()) ?></td>
                 <td><?= htmlspecialchars($chapter->getCreation_date_fr()) ?></td>
                 <td>
@@ -33,12 +33,12 @@
                     ?>
                 </td>
                 <td>
-                    <a href="index.php?action=chapterEdit&amp;id=<?= $chapter->getId() ?>">
+                <a href="index.php?action=chapterEdit&amp;id=<?= $chapter->getId() ?>">
                         <i class="fas fa-edit"></i>
                     </a>
                 </td>
                 <td>
-                     <i class="fas fa-trash"></i>
+                     <i class="fas fa-trash" onclick="deleteChapter(<?= $chapter->getId() ?>)"></i>
                 </td>
             </tr>
             <?php
@@ -52,4 +52,3 @@
 <a href="index.php?action=addChapter">
     <input class="button-design" type="submit" value="Ajouter un chapitre"/>
 </a>
-

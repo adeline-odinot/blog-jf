@@ -31,4 +31,14 @@ class ChapterAdminManager extends Manager
 
         return $req;
     }
+
+    public function deleteChapter($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM chapters WHERE id = :id');
+        $req->bindValue(':id', $id, \PDO::PARAM_INT);
+        $req->execute();
+
+        return $req;
+    }
 }

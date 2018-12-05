@@ -159,4 +159,16 @@ class BackendController
             echo json_encode($editCommentMsg);
         }
     }
+
+    public function deleteChapter($id)
+    {
+        if (true)
+        {
+            $chapterAdminManager = new \Forteroche\Models\ChapterAdminManager();
+            $deleteChapter = $chapterAdminManager->deleteChapter($id);
+
+            $commentAdminManager = new \Forteroche\Models\CommentAdminManager();
+            $deleteComment = $commentAdminManager->deleteAllCommentChapter($id);
+        }
+    }
 }

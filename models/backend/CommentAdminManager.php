@@ -34,4 +34,14 @@ class CommentAdminManager extends Manager
 
         return $req;
     }
+
+    public function deleteAllCommentChapter($chapter_id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM comments WHERE chapter_id = :chapter_id');
+        $req->bindValue(':chapter_id', $chapter_id, \PDO::PARAM_INT);
+        $req->execute();
+
+        return $req;
+    }
 }
