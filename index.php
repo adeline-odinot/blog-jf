@@ -98,7 +98,10 @@ try {
             $backendController->deleteChapter($_GET['id']);
             break;
 
-
+        case 'deleteComment':
+            $backendController->deleteComment($_GET['id']);
+            break;
+        
         default:
             $frontendController->home();        
     }

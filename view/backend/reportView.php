@@ -17,7 +17,7 @@
         foreach ($comments as $comment)
         {
         ?>
-        <tr class="text-center">
+        <tr class="text-center" id="delete-<?= $comment->getId() ?>">
             <td><?= htmlspecialchars($comment->getAuthor()) ?></td>
             <td><?= htmlspecialchars($comment->getComment()) ?></td>
             <td><?= htmlspecialchars($comment->getNb_report()) ?></td>
@@ -27,7 +27,7 @@
                 </a>
             </td>
             <td>
-                <i class="fas fa-trash"></i>
+                <i class="fas fa-trash" onclick="deleteComment(<?= $comment->getId() ?>)"></i>
             </td>
         </tr>
         <?php

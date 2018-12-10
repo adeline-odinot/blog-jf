@@ -171,4 +171,13 @@ class BackendController
             $deleteComment = $commentAdminManager->deleteAllCommentChapter($id);
         }
     }
+
+    public function deleteComment($id)
+    {
+        if (true)
+        {
+            $commentAdminManager = new \Forteroche\Models\CommentAdminManager();
+            $deleteComment = $commentAdminManager->deleteComment($id);
+        }
+    }
 }

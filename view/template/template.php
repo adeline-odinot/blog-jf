@@ -95,6 +95,7 @@
         <script src="./public/js/editChapterForm.js" async></script>
         <script src="./public/js/editCommentForm.js" async></script>
         <script src="./public/js/deleteChapter.js" async></script>
+        <script src="./public/js/deleteComment.js" async></script>
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
     </body>
