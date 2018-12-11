@@ -101,6 +101,14 @@ try {
         case 'deleteComment':
             $backendController->deleteComment($_GET['id']);
             break;
+
+        case 'addUserAdmin':
+            $backendController->addUserAdminView();
+            break;
+            
+        case 'verifUserAdminForm': 
+            $backendController->formAddUserAdmin($_POST['id'], $_POST['pass'], $_POST['pass-confirm'], $_POST['email']);
+            break;
         
         default:
             $frontendController->home();        

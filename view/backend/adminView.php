@@ -4,11 +4,11 @@
 
     <h2 class="text-center title-content">Administration</h2>
 
-    <?php 
-        require('chaptersView.php');
-        require('reportView.php');
-    ?>
+    <?php require('chaptersView.php'); ?>
 
+    <?php require('reportView.php'); ?>
+
+    <?php require('userAdminView.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 
