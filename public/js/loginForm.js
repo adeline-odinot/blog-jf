@@ -16,7 +16,7 @@ $(function () {
                  
                 if(json.isSuccess) 
                 {
-                    $('#login-form')[0].reset();
+                    window.location.replace('index.php?action=home');
                 }
                 else
                 {

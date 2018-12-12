@@ -7,6 +7,22 @@ require_once("models/Chapter.php");
 
 class ChapterAdminManager extends Manager
 {
+    public function getChapters()
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, title, content, author, update_date, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(update_date, \'%d/%m/%Y à %Hh%imin%ss\') AS update_date_fr FROM chapters ORDER BY creation_date DESC');
+        $req->execute();
+
+        $chapters = [];
+
+        while ($donnees = $req->fetch(\PDO::FETCH_ASSOC))
+        {
+          $chapters[] = new Chapter($donnees);
+        }
+    
+        return $chapters;
+    }
+
     public function addChapter($addChapter)
     {   
         $db = $this->dbConnect();

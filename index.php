@@ -5,8 +5,8 @@ require('controllers/backend/backend.php');
 $frontendController = new FrontendController();
 $backendController = new BackendController();
 
-try {
-    
+try 
+{
     $action = $_GET['action'];
 
     switch ($action) 
@@ -64,54 +64,169 @@ try {
             $frontendController->commentReport($_GET['id_comment']);
             break;
 
+        case 'disconnect':
+            $frontendController->disconnectView();
+            break;
+
         // BACKEND
 
         case 'admin':
-            $backendController->admin();
-            break;
-    
-        case 'addChapter':
-            $backendController->addChapterView();
-            break;
-            
-        case 'verifAddChapter':
-            $backendController->addChapter($_POST['title'], $_POST['content'], $_POST['author']);
-            break;
+                if (isset($_COOKIE['id']))
+                {
+                    if ($backendController->secure($_COOKIE['id']))
+                    {
+                        $backendController->admin();
+                    }
+                }
+                else
+                {
+                    $frontendController->home();
+                }
+                break;
             
         case 'chapterEdit':
-            $backendController->chapterEditView($_GET['id']);
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->chapterEditView($_GET['id']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
 
         case 'verifChapterEdit':
-            $backendController->chapterEdit($_POST['title'], $_POST['content'], $_POST['author'], $_GET['id']);
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->chapterEdit($_POST['title'], $_POST['content'], $_POST['author'], $_GET['id']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
 
         case 'commentEdit':
-            $backendController->commentEditView($_GET['id']);
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->commentEditView($_GET['id']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
 
         case 'verifCommentEdit':
-            $backendController->commentEdit($_POST['author'], $_POST['comment'], $_GET['id']);
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->commentEdit($_POST['author'], $_POST['comment'], $_GET['id']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
 
+        case 'addChapter':
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->addChapterView();
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
+            break;
+
+        case 'verifAddChapter':
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->addChapter($_POST['title'], $_POST['content'], $_POST['author']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
+            break;
+        
         case 'deleteChapter':
-            $backendController->deleteChapter($_GET['id']);
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->deleteChapter($_GET['id']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
 
         case 'deleteComment':
-            $backendController->deleteComment($_GET['id']);
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->deleteComment($_GET['id']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
 
-        case 'addUserAdmin':
-            $backendController->addUserAdminView();
+            case 'addUserAdmin':
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->addUserAdminView();
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
             
-        case 'verifUserAdminForm': 
-            $backendController->formAddUserAdmin($_POST['id'], $_POST['pass'], $_POST['pass-confirm'], $_POST['email']);
+        case 'verifUserAdminForm':
+            if (isset($_COOKIE['id']))
+            {
+                if ($backendController->secure($_COOKIE['id']))
+                {
+                    $backendController->formAddUserAdmin($_POST['id'], $_POST['pass'], $_POST['pass-confirm'], $_POST['email']);
+                }
+            }
+            else
+            {
+                $frontendController->home();
+            }
             break;
         
         default:
-            $frontendController->home();        
+            $frontendController->home();
+            break;            
     }
 }
 catch(Exception $e) 

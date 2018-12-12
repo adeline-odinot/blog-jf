@@ -113,8 +113,26 @@ class FrontendController
                     $login['isSuccess'] = false; 
                 }
             }
+            if ($login['isSuccess'])
+            {
+                if (isset($_POST['remember']))
+                {
+                    setcookie('id', $user_pseudo, time() + 365*24*3600, null, null, false, true);
+                    setcookie('secure', sha1($login['id'].'tonchatestrose'), time() + 365*24*3600, null, null, false, true);
+                }
+                else
+                {
+                    setcookie('id', $user_pseudo, time() + 2*3600, null, null, false, true);
+                    setcookie('secure', sha1($login['id'].'tonchatestrose'), time() + 2*3600, null, null, false, true);
+                }
+            }
             echo json_encode($login);
         }
+    }
+
+    public function disconnectView()
+    {
+        require('view/frontend/disconnectView.php');
     }
 
     public function legalNotice()

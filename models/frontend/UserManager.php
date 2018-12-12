@@ -15,4 +15,14 @@ class UserManager extends Manager
         
         return $req->fetchColumn();
     }
+
+    public function isAdmin($user_pseudo)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT user_rank FROM users WHERE user_rank = 1 AND user_pseudo = :user_pseudo');
+        $req->bindValue(':user_pseudo', $user_pseudo, \PDO::PARAM_STR);
+        $req->execute();
+
+        return $req->fetchColumn();
+    }
 }
