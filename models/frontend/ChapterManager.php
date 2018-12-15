@@ -7,10 +7,21 @@ require_once("models/Chapter.php");
 
 class ChapterManager extends Manager
 {
-    public function getChapters()
+    public function getNbChapters()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, author, update_date, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(update_date, \'%d/%m/%Y à %Hh%imin%ss\') AS update_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 5');
+        $req = $db->query('SELECT COUNT(id) AS $nb_chapters FROM chapters');
+
+        return $req->fetchColumn();
+    }
+
+    public function getChapters($page_position, $nb_by_page)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, title, content, author, update_date, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(update_date, \'%d/%m/%Y à %Hh%imin%ss\') AS update_date_fr FROM chapters ORDER BY creation_date DESC LIMIT :page_position, :nb_by_page');
+        $req->bindValue(':page_position', intval($page_position), \PDO::PARAM_INT);
+        $req->bindValue(':nb_by_page', intval($nb_by_page), \PDO::PARAM_INT);
+        $req->execute();
 
         $chapters = [];
 

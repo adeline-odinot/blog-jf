@@ -10,7 +10,7 @@ class CommentAdminManager extends Manager
     public function getComments()
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id_comment AS id , author, report_date,  comment, COUNT(id_comment) AS nb_report , comment_date FROM comments, report WHERE id_comment = comments.id GROUP BY id_comment, report_date ORDER BY nb_report DESC');
+        $comments = $db->prepare('SELECT id_comment AS id , author, comment, COUNT(id_comment) AS nb_report , comment_date FROM comments, report WHERE id_comment = comments.id GROUP BY id_comment ORDER BY nb_report DESC');
         $comments->execute();
 
         $comment = [];

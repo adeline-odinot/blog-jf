@@ -8,21 +8,32 @@ require_once('models/frontend/ReportManager.php');
 
 class FrontendController
 {
-    public function listChapters()
+    public function listChapters($cPage)
     {
         $chapterManager = new \Forteroche\Models\ChapterManager();
-        $chapters = $chapterManager->getChapters();
+
+        $nb_chapters = $chapterManager->getNbChapters();
+        $nb_by_page = 4;
+        $nb_page = ceil($nb_chapters/$nb_by_page);
+        $page_position = ($cPage-1)*$nb_by_page;
+
+        $chapters = $chapterManager->getChapters($page_position, $nb_by_page);
 
         require('view/frontend/listChaptersView.php');
     }
 
-    public function chapter($chapterId)
+    public function chapter($chapterId, $cPage)
     {
         $chapterManager = new \Forteroche\Models\ChapterManager();
         $commentManager = new \Forteroche\Models\CommentManager();
 
+        $nb_comments = $commentManager->getNbComments($chapterId);
+        $nb_by_page = 4;
+        $nb_page = ceil($nb_comments/$nb_by_page);
+        $page_position = ($cPage-1)*$nb_by_page;
+
         $chapter = $chapterManager->getChapter($chapterId);
-        $comments = $commentManager->getComments($chapterId);
+        $comments = $commentManager->getComments($chapterId, $page_position, $nb_by_page);
 
         require('view/frontend/chapterView.php');
     }
@@ -223,7 +234,7 @@ class FrontendController
     {
         $data = trim($data);
         $data = stripslashes($data);
-        $data = htmlspecialchars($data);
+        $data = htmlspecialchars_decode($data);
         return $data;
     }
 

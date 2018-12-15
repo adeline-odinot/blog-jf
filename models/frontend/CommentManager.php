@@ -7,17 +7,32 @@ require_once("models/Comment.php");
 
 class CommentManager extends Manager
 {
-    public function getComments($chapterId)
+    
+    public function getNbComments($chapterId)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT * FROM comments WHERE chapter_id = ? AND archive = 0 ORDER BY comment_date DESC');
-        $comments->execute(array($chapterId));
+        $req = $db->prepare('SELECT COUNT(id) AS $nb_comments FROM comments WHERE chapter_id = :chapter_id ');
+        $req->bindValue(':chapter_id', $chapterId, \PDO::PARAM_INT);
+        $req->execute();
+
+        return $req->fetchColumn();
+    }
+
+    
+    public function getComments($chapterId, $page_position, $nb_by_page)
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('SELECT * FROM comments WHERE chapter_id = :chapter_id AND archive = 0 ORDER BY comment_date DESC LIMIT :page_position, :nb_by_page');
+        $comments->bindValue(':chapter_id', $chapterId, \PDO::PARAM_INT);
+        $comments->bindValue(':page_position', intval($page_position), \PDO::PARAM_INT);
+        $comments->bindValue(':nb_by_page', intval($nb_by_page), \PDO::PARAM_INT);
+        $comments->execute();
 
         $comment = [];
 
         while ($donnees = $comments->fetch(\PDO::FETCH_ASSOC))
         {
-          $comment[] = new Comment($donnees);
+            $comment[] = new Comment($donnees);
         }
     
         return $comment;
@@ -38,8 +53,11 @@ class CommentManager extends Manager
     public function chapterComment($comment)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(chapter_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-        $affectedLines = $comments->execute(array($comment->getChapter_id(), $comment->getAuthor(), $comment->getComment()));
+        $comments = $db->prepare('INSERT INTO comments(chapter_id, author, comment, comment_date) VALUES(:chapter_id, :author, :comment, NOW())');
+        $comments->bindValue(':chapter_id', $comment->getChapter_id(), \PDO::PARAM_INT);
+        $comments->bindValue(':author', $comment->getAuthor(), \PDO::PARAM_STR);
+        $comments->bindValue('comment', $comment->getComment(), \PDO::PARAM_STR);
+        $affectedLines = $comments->execute();
 
         return $affectedLines;
     }

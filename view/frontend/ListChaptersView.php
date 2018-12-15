@@ -10,8 +10,9 @@ foreach ($chapters as $chapter)
 ?>
     <div class="row showing text-center">
         <div class="col-md-12 d-flex flex-column align-items-center">
-            <h3 class="title-chapter"><a href="index.php?action=chapter&amp;id=<?= $chapter->getId() ?>">
-                    <?= htmlspecialchars($chapter->getTitle()) ?>
+            <h3 class="title-chapter">
+                <a href="index.php?action=chapter&amp;id=<?= $chapter->getId() ?>">
+                    <?= htmlspecialchars_decode($chapter->getTitle()) ?>
                 </a>
             </h3>
         
@@ -32,9 +33,9 @@ foreach ($chapters as $chapter)
                     echo $content;
                 ?>
                 <br />
-                <em><a href="index.php?action=chapter&amp;id=<?= htmlspecialchars($chapter->getId()) ?>">Lire la suite</a></em>
+                <em><a href="index.php?action=chapter&amp;id=<?= htmlspecialchars_decode($chapter->getId()) ?>">Lire la suite</a></em>
                 <blockquote>
-                    <p>Publié le <?= htmlspecialchars($chapter->getCreation_date_fr()) ?> par <?= htmlspecialchars($chapter->getAuthor()) ?></p>
+                    <p>Publié le <?= htmlspecialchars_decode($chapter->getCreation_date_fr()) ?> par <?= htmlspecialchars_decode($chapter->getAuthor()) ?></p>
                 </blockquote>
             </p>
             <div class="border-bottom border-secondary"></div>
@@ -43,6 +44,33 @@ foreach ($chapters as $chapter)
 <?php
 }
 ?>
+
+<nav aria-label="Pagination des chapitres">
+    <ul class="pagination">
+        <?php
+            for($i = 1; $i <= $nb_page; $i++) 
+            {
+                if ($i == $cPage) 
+                {
+                ?>
+
+                    <li class="page-item active">
+                        <div class="page-link"><?= $i ?><span class="sr-only">(current)</span></div>
+                    </li>
+                <?php
+                }
+                else 
+                {
+        ?>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?action=listChapters&amp;page=<?= $i ?>"><?= $i ?></a>
+                    </li> 
+            <?php    
+                }
+            }
+            ?>
+    </ul>
+</nav>  
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/template/template.php'); ?>
