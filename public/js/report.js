@@ -12,7 +12,7 @@ function report(id)
             else
             {
                 alert('Erreur du signalement');
-            }                
+            }
         }
     });
 }

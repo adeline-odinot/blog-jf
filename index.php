@@ -239,21 +239,21 @@ try {
                 }
                 break;
 
-                case 'addUserAdmin':
+            case 'addUserAdmin':
                 if (isset($_COOKIE['id']))
                 {
                     if ($backendController->secure($_COOKIE['id']))
                     {
                         $backendController->addUserAdminView();
                     }
-                    else
-                    {
-                        $frontendController->home();
-                    }
+                }
+                else
+                {
+                    $frontendController->home();
                 }
                 break;
                 
-            case 'verifUserAdminForm':
+            case 'verifUserAdminForm': 
                 if (isset($_COOKIE['id']))
                 {
                     if ($backendController->secure($_COOKIE['id']))

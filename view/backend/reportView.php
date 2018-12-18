@@ -18,9 +18,9 @@
         {
         ?>
         <tr class="text-center" id="delete-<?= $comment->getId() ?>">
-            <td><?= htmlspecialchars($comment->getAuthor()) ?></td>
-            <td><?= htmlspecialchars($comment->getComment()) ?></td>
-            <td><?= htmlspecialchars($comment->getNb_report()) ?></td>
+            <td><?= htmlspecialchars_decode($comment->getAuthor()) ?></td>
+            <td><?= htmlspecialchars_decode($comment->getComment()) ?></td>
+            <td><?= htmlspecialchars_decode($comment->getNb_report()) ?></td>
             <td>
                 <a href="index.php?action=commentEdit&amp;id=<?= $comment->getId() ?>">
                     <i class="fas fa-edit"></i>

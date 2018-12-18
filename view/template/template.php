@@ -22,26 +22,26 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.php?action=home"><i class="fas fa-home"></i> Accueil <span class="sr-only">Accueil</span></a>
+                            <a class="nav-link nav-design" href="index.php?action=home"><i class="fas fa-home"></i> Accueil <span class="sr-only">Accueil</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=about"><i class="fas fa-question-circle"></i> À propos <span class="sr-only">À propos</span></a>
+                            <a class="nav-link nav-design" href="index.php?action=about"><i class="fas fa-question-circle"></i> À propos <span class="sr-only">À propos</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=listChapters"><i class="fas fa-book-reader"></i> Chapitres</a><span class="sr-only">Chapitres</span>
+                            <a class="nav-link nav-design" href="index.php?action=listChapters"><i class="fas fa-book-reader"></i> Chapitres</a><span class="sr-only">Chapitres</span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=contact"><i class="fas fa-envelope"></i> Contact</a><span class="sr-only">Contact</span>
+                            <a class="nav-link nav-design" href="index.php?action=contact"><i class="fas fa-envelope"></i> Contact</a><span class="sr-only">Contact</span>
                         </li>
                         <?php 
                             if (isset($_COOKIE['id']))
                             {
                         ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php?action=admin"><i class="fas fa-cog"></i> Administration</a><span class="sr-only">Administration</span>
+                                    <a class="nav-link nav-design" href="index.php?action=admin"><i class="fas fa-cog"></i> Administration</a><span class="sr-only">Administration</span>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php?action=disconnect"><i class="fas fa-user"></i> Se deconnecter</a><span class="sr-only">Se deconnecter</span>
+                                    <a class="nav-link nav-design" href="index.php?action=disconnect"><i class="fas fa-user"></i> Se deconnecter</a><span class="sr-only">Se deconnecter</span>
                                 </li>
                         <?php
                             }
@@ -49,13 +49,13 @@
                             {
                         ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=login"><i class="fas fa-user"></i> Se connecter</a><span class="sr-only">Se connecter</span>
+                                <a class="nav-link nav-design" href="index.php?action=login"><i class="fas fa-user"></i> Se connecter</a><span class="sr-only">Se connecter</span>
                             </li>
                         <?php
                             }
                         ?>
                     </ul>		
-                </div>				
+                </div>			
             </div>
         </nav>
             <div class="text-center title row">
@@ -73,7 +73,7 @@
         <footer class="footer">
             <div class="row footer-informations">
                 <div class="col-md-4 text-center">
-                    <h4 class="underline">Mentions légales</h4>
+                    <h4 class="underline design-footer">Mentions légales</h4>
                     <p><a href="index.php?action=legalNotice">Aller sur la page des mentions légales du site</a></p>
                 </div>
                 <div class="col-md-4 text-center">
@@ -81,26 +81,28 @@
                         if (isset($_COOKIE['id']))
                             {
                     ?>
-                            <h4 class="underline">Deconnexion</h4>
+                            <h4 class="underline design-footer">Deconnexion</h4>
                             <p><a href="index.php?action=disconnect">Se deconnecter</a></p>
                     <?php
                             }
                             else
                             {
                     ?>
-                            <h4 class="underline">Connexion</h4>
+                            <h4 class="underline design-footer">Connexion</h4>
                             <p><a href="index.php?action=login">Se connecter</a></p>
                     <?php
                             }
                     ?>
+
+                    
                 </div>
                 <div class="col-md-4 text-center">
-                    <h4 class="underline">Contactez-moi</h4>
+                    <h4 class="underline design-footer">Contactez-moi</h4>
                     <p><a href="index.php?action=contact">jeanforteroche.alaska@gmail.com</a></p>
                 </div>
             </div>
             <div class="row">
-                <p class="col-md-12 text-center copyright">© 2018 Adeline Odinot | Site réalisé dans le cadre d'une formation <span class="underline"><a href="https://openclassrooms.com/">Openclassooms</a></span></p>
+                <p class="col-md-12 text-center copyright"><span class="design-footer">©</span> 2018 Adeline Odinot <span class="design-footer">|</span> Site réalisé dans le cadre d'une formation <span class="underline"><a href="https://openclassrooms.com/">Openclassooms</a></span></p>
             </div>
         </footer>
         <script
@@ -123,12 +125,13 @@
         <script src="./public/js/contactForm.js" async></script>
         <script src="./public/js/loginForm.js" async></script>
         <script src="./public/js/addChapterForm.js" async></script>
-        <script src="./public/js/report.js" async></script>
         <script src="./public/js/editChapterForm.js" async></script>
         <script src="./public/js/editCommentForm.js" async></script>
+        <script src="./public/js/report.js" async></script>
         <script src="./public/js/deleteChapter.js" async></script>
         <script src="./public/js/deleteComment.js" async></script>
         <script src="./public/js/addUserAdminForm.js" async></script>
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan:300|Spicy+Rice" rel="stylesheet">
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
     </body>

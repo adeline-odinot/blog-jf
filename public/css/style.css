@@ -1,50 +1,64 @@
 /* --- GLOBAL --- */
- a
+*
+{
+font-family: 'Kodchasan', sans-serif;
+}
+
+a
 {
     text-decoration: none;
 }
- .container-fluid
+
+.container-fluid
 {
     padding: 0px !important;
 }
- .row
+
+.row
 {
     margin: 0px !important;
 }
- ul
+
+ul
 {
     padding: 0px !important;
     margin: 0px !important;
 }
- li
+
+li
 {
     list-style-type: none;
-    padding: 10px;
 }
- .nav-item
+
+.nav-item
 {
     height: 59px;
 }
- .nav-item:hover
+
+.nav-item:hover
 {
     border-top: 1px solid white;
     height: 58px;
 }
- nav 
+
+nav 
 {
     padding: 0px !important;
 }
- .underline 
+
+.underline, .title-content
 {
     text-decoration: underline !important;
 }
- .title-content
+
+.title-content
 {
-    text-decoration: underline;
-    color : #553c3c;
+    color : #395b6b;
     margin-bottom: 20px;
+    font-family: 'Spicy Rice', cursive;
 }
- blockquote 
+
+blockquote 
 {
     padding: 10px 20px;
     margin: 0 0 20px;
@@ -53,140 +67,200 @@
     color: #3d3d3d;
     background-color: #ddd7ff;
 }
- h3 a
+
+blockquote p
+{
+    margin: 0px;
+    padding: 5px;
+}
+
+h3 a
 {
     color: #114e6b !important;
 }
- .button-design
+
+.button-design
 {
     color: white;
     background-color: #122731;
-    border-radius: 3px;
-    padding: 10px;
-    border: 1px solid #122731;
-    margin: 20px;
-    cursor: pointer;
-}
- .button-design:hover
-{
-    color: #122731;
-    background-color: white;
-    border-radius: 3px;
-    border: 1px solid #122731;
-    padding: 10px;
-    margin: 20px;
-    cursor: pointer;
-}
- .button-design
-{
+    margin: 0px !important;
     margin-left: 0px !important;
 }
- .content
+
+.button-design:hover
+{
+    color: #122731;
+    background-color: transparent;
+}
+
+.button-design, .button-design:hover
+{
+    border-radius: 3px;
+    margin: 20px;
+    cursor: pointer;
+    border: 1px solid #122731;
+}
+
+.button-design, .button-design:hover, li
+{
+    padding: 10px;
+}
+
+.content
 {
     padding: 50px;
 }
- .border-bottom
+
+.border-bottom
 {
+    padding: 15px;
     width: 100%;
 }
- .label-design
+
+.label-design
 {
     color: #2d6fb5;
 }
- .form-group
+
+.form-group
 {
     width: 60%;
 }
- /* --- HEADER --- */
- .header
+
+
+/* --- HEADER --- */
+
+
+.header
 {
     background: url(../../public/images/header_alaska_img.jpg) no-repeat;
     color: white;
     width: 100%;
 }
- h1 
+
+h1 
 {
     border-top: 5px solid white;
     border-bottom: 5px solid white;
     margin-top: 60px !important;
 }
- .title 
+
+.title 
 {
     padding: 100px 0px;
 }
- /* --- HEADER ET FOOTER  --- */
- .header a, .footer a
+
+/* --- HEADER ET FOOTER  --- */
+
+.header a, .footer a
 {
     color: white !important;
 }
- .nav-header, .footer 
+
+.nav-header, .footer 
 {
     background-color: #122731;
 }
- .nav-header
+
+.nav-header
 {
     font-size: 16px;
     z-index: 999;
     width: 100%;
 }
- /* --- FOOTER --- */
- .footer
+
+/* --- FOOTER --- */
+
+.footer
 {
     width: 100%;
     border: 1px solid black;
 }
- .footer h4
+
+.footer h4
 {
-    color: white;
     font-size: 20px;
 }
- .footer-informations
+
+.design-footer
+{
+    color: #6e8bd1 !important;
+}
+
+.footer-informations
 {
     padding: 10px;
 }
- .footer p
+
+.footer p
 {
     margin: 0px;
- }
- .footer p, .footer a, .footer li
+
+}
+
+.footer p, .footer a, .footer li
 {
     color: #ccd !important;
 }
- .copyright
+
+.copyright
 {
     border-top: 1px solid  black;
     padding: 10px;
 }
- /* --- ACCUEIL --- */
- .author-sign 
+
+
+/* --- ACCUEIL --- */
+
+.author-sign 
 {
     color: #4745b9;
 }
- .showing
+
+.showing
 {
     padding: 20px;
 }
- /* --- CHAPITRE ET COMMENTAIRES --- */
- .comment
+
+/* --- CHAPITRE ET COMMENTAIRES --- */
+
+.comment
 {
-    padding: 5px;
+    width: 60% !important;
+    padding-bottom: 15px;
+    background-color: #f6f6f6;
 }
- .font-size-comment
+
+.font-size-comment
 {
     font-size: 13px;
 }
- .title-comment
+
+.title-comment
 {
     font-size: 22px;
     margin: 20px;
 }
- .author-comment, .title-comment
+
+.author-comment, .title-comment
 {
     color: #333462;
 }
- .title-chapter, .title-chapter a
+
+.title-chapter, .title-chapter a, .title-chapter-view
 {
     color: #6e8bd1 !important;
+}
+
+.title-chapter, .title-chapter a
+{ 
+    font-size: 25px;
+}
+
+.title-chapter-view 
+{
+    text-decoration: underline;
+    margin-bottom: 50px;
 }
 
 .design-report
@@ -194,26 +268,70 @@
     color: #ff6b6b;
 }
 
+.page-link
+{
+    color: #122731 !important;
+}
+
+.page-item.active .page-link
+{
+    background-color: #122731 !important;
+    border-color: #122731 !important;
+    color: white !important;
+}
+
+.page-link:hover
+{
+    background-color: #2e526359 !important;
+    color: black !important;
+}
+
 
 /* --- A PROPOS --- */
- .img-jean
+
+.img-jean
 {
     width: 100% !important;
     border: 1px solid #d0c9c9;
     padding: 10px;
 }
- .title-txt-about, .title-txt
+
+.title-txt-about, .title-txt
 {
     color: #8076b3;
 }
- .title-txt-about
+
+.title-txt-about
 {
     font-size: 25px;
 }
- .title-txt
+
+.title-txt
 {
     font-size: 20px;
     font-weight: bold;
+}
+
+/* --- CONTACT ET CONNEXION --- */
+
+.design-form
+{
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #d0c9c9;
+}
+
+/* --- CONNEXION --- */
+
+.register-connection
+{
+    color: #8076b3;
+    font-size: 18px;
+}
+
+.register-connection:hover
+{
+    color: #8076b3 !important;
 }
 
 /* -- FORM -- */
@@ -231,15 +349,6 @@
     color: #122731;
 }
 
-/* --- CONTACT --- */
-
-.design-form
-{
-    margin-top: 30px;
-    padding: 15px;
-    border: 1px solid #d0c9c9;
-}
-
 /* -- ADMIN --*/
 
 .fas
@@ -250,6 +359,7 @@
 .title-admin
 {
     font-size: 25px;
+    margin : 30px 0px 0px 0px
 }
 
 .title-admin, .fas
@@ -274,10 +384,19 @@
      border: 1px solid #656565!important
 }
 
+.table-bordered p
+{
+    margin: 0px;
+}
+
+.button-add-chapter
+{
+    margin: 10px 0px;
+}
+
 /* -- MEDIA QUERIES -- */
 
-
-@media all and (max-width : 768px)
+@media all and (max-width : 1200px)
 {
     .content 
     {
@@ -285,3 +404,28 @@
     }
 }
 
+@media all and (max-width : 768px)
+{
+    .form-group
+    {
+        width: 100%
+    }
+    .footer p a
+    {
+        font-size: 14px !important;
+    }
+}
+
+@media all and (max-width : 576px)
+{
+    .button-design em
+    {
+        font-size: 11px;
+    }
+    
+    .button-design 
+    {
+        padding: 5px;
+    }
+    
+}

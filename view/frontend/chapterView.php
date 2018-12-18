@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-md-12 d-flex flex-column align-items-center text-center">
-        <h2 class="title-chapter">
+        <h2 class="title-chapter-view">
             <?= htmlspecialchars_decode($chapter->getTitle()) ?>
         </h2>
         <p>

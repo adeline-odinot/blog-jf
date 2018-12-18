@@ -18,8 +18,8 @@
             {
             ?>
             <tr class="text-center" id="delete-<?= $chapter->getId() ?>">
-                <td><?= htmlspecialchars($chapter->getTitle()) ?></td>
-                <td><?= htmlspecialchars($chapter->getCreation_date_fr()) ?></td>
+                <td><?= htmlspecialchars_decode($chapter->getTitle()) ?></td>
+                <td><?= htmlspecialchars_decode($chapter->getCreation_date_fr()) ?></td>
                 <td>
                     <?php 
                         if ($chapter->getUpdate_date_fr() === NULL) 
@@ -28,7 +28,7 @@
                         } 
                         else 
                         { 
-                            echo 'Modifié le ' . htmlspecialchars($chapter->getUpdate_date_fr());
+                            echo 'Modifié le ' . htmlspecialchars_decode($chapter->getUpdate_date_fr());
                         }
                     ?>
                 </td>
@@ -49,6 +49,10 @@
     </table>
 </div>
 
-<a href="index.php?action=addChapter">
-    <input class="button-design" type="submit" value="Ajouter un chapitre"/>
-</a>
+<div class="button-add-chapter">
+    <a href="index.php?action=addChapter">
+        <input class="button-design" type="submit" value="Ajouter un chapitre"/>
+    </a>
+</div>
+
+
