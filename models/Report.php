@@ -2,7 +2,9 @@
 
 namespace Forteroche\Models;
 
-class Report
+require_once('Model.php');
+
+class Report extends Model
 {
     // Attributs
     private $id;
@@ -13,23 +15,6 @@ class Report
     public function __construct(array $donnees) 
     {
         $this->hydrate($donnees);
-    }
-
-    // Hydrate
-    public function hydrate(array $donnees)
-    {
-        foreach ($donnees as $key => $value)
-        {
-            // On récupère le nom du setter correspondant à l'attribut.
-            $method = 'set'.ucfirst($key);
-                
-            // Si le setter correspondant existe.
-            if (method_exists($this, $method))
-            {
-                // On appelle le setter.
-                $this->$method($value);
-            }
-        }
     }
 
     // Getters
@@ -50,17 +35,17 @@ class Report
 
     //  Setters
 
-    public function setId($id) 
+    public function setId(int $id) 
     {
         $this->id = $id;
     }
     
-    public function setId_comment($id_comment) 
+    public function setId_comment(int $id_comment) 
     {
         $this->id_comment = $id_comment;
     }
     
-    public function setReport_date($report_date) 
+    public function setReport_date(string $report_date) 
     {
         $this->report_date = $report_date;
     }

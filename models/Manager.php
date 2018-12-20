@@ -2,6 +2,8 @@
 
 namespace Forteroche\Models;
 
+// Connexion à la BDD.
+
 class Manager
 {
     protected function dbConnect()

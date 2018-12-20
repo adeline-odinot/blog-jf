@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 namespace Forteroche\Models;
 
-class Chapter
+require_once('Model.php');
+
+class Chapter extends Model
 {
     // Attributs
     private $id;
@@ -16,23 +18,6 @@ class Chapter
     public function __construct(array $donnees) 
     {
         $this->hydrate($donnees);
-    }
-
-    // Hydrate
-    public function hydrate(array $donnees)
-    {
-        foreach ($donnees as $key => $value)
-        {
-            // On récupère le nom du setter correspondant à l'attribut.
-            $method = 'set'.ucfirst($key);
-                
-            // Si le setter correspondant existe.
-            if (method_exists($this, $method))
-            {
-                // On appelle le setter.
-                $this->$method($value);
-            }
-        }
     }
 
     // Getters
@@ -68,33 +53,36 @@ class Chapter
 
     //  Setters
 
-    public function setId($id) 
+    public function setId(int $id) 
     {
         $this->id = $id;
     }
     
-    public function setTitle($title) 
+    public function setTitle(string $title) 
     {
         $this->title = $title;
     }
     
-    public function setContent($content) 
+    public function setContent(string $content) 
     {
         $this->content = $content;
     }
     
-    public function setAuthor($author) 
+    public function setAuthor(string $author) 
     {
         $this->author = $author;
     }
     
-    public function setCreation_date_fr($creation_date) 
+    public function setCreation_date_fr(string $creation_date) 
     {
         $this->creation_date = $creation_date;
     }
 
     public function setUpdate_date_fr($update_date_fr) 
     {
-        $this->update_date_fr = $update_date_fr;
+        if ($update_date_fr === NULL || is_string($update_date_fr))
+        {
+            $this->update_date_fr = $update_date_fr;
+        }
     }
 }

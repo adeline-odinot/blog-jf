@@ -2,7 +2,9 @@
 
 namespace Forteroche\Models;
 
-class Comment
+require_once('Model.php');
+
+class Comment extends Model
 {
     // Attributs
     private $id;
@@ -16,23 +18,6 @@ class Comment
     public function __construct(array $donnees) 
     {
         $this->hydrate($donnees);
-    }
-
-    // Hydrate
-    public function hydrate(array $donnees)
-    {
-        foreach ($donnees as $key => $value)
-        {
-            // On récupère le nom du setter correspondant à l'attribut.
-            $method = 'set'.ucfirst($key);
-                
-            // Si le setter correspondant existe.
-            if (method_exists($this, $method))
-            {
-                // On appelle le setter.
-                $this->$method($value);
-            }
-        }
     }
 
     // Getters
@@ -68,32 +53,32 @@ class Comment
 
     //  Setters
 
-    public function setId($id) 
+    public function setId(int $id) 
     {
         $this->id = $id;
     }
     
-    public function setChapter_id($chapter_id) 
+    public function setChapter_id(int $chapter_id) 
     {
         $this->chapter_id = $chapter_id;
     }
     
-    public function setAuthor($author) 
+    public function setAuthor(string $author) 
     {
         $this->author = $author;
     }
     
-    public function setComment($comment) 
+    public function setComment(string $comment) 
     {
         $this->comment = $comment;
     }
     
-    public function setComment_date($comment_date) 
+    public function setComment_date(string $comment_date) 
     {
         $this->comment_date = $comment_date;
     }
 
-    public function setNb_report($nb_report) 
+    public function setNb_report(int $nb_report) 
     {
         $this->nb_report = $nb_report;
     }
