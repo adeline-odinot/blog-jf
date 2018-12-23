@@ -121,16 +121,20 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
               integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" 
               crossorigin="anonymous">
-        <script src="./public/js/addCommentForm.js" async></script>
-        <script src="./public/js/contactForm.js" async></script>
-        <script src="./public/js/loginForm.js" async></script>
-        <script src="./public/js/addChapterForm.js" async></script>
-        <script src="./public/js/editChapterForm.js" async></script>
-        <script src="./public/js/editCommentForm.js" async></script>
-        <script src="./public/js/report.js" async></script>
-        <script src="./public/js/deleteChapter.js" async></script>
-        <script src="./public/js/deleteComment.js" async></script>
-        <script src="./public/js/addUserAdminForm.js" async></script>
+
+        <script src="./public/js/frontend/cookieBar.js"></script>
+        <script src="./public/js/frontend/addCommentForm.js" async></script>
+        <script src="./public/js/frontend/contactForm.js" async></script>
+        <script src="./public/js/frontend/loginForm.js" async></script>
+        <script src="./public/js/frontend/report.js" async></script>
+        
+        <script src="./public/js/backend/addChapterForm.js" async></script>
+        <script src="./public/js/backend/editChapterForm.js" async></script>
+        <script src="./public/js/backend/editCommentForm.js" async></script>
+        <script src="./public/js/backend/deleteChapter.js" async></script>
+        <script src="./public/js/backend/deleteComment.js" async></script>
+        <script src="./public/js/backend/addUserAdminForm.js" async></script>
+
         <link href="https://fonts.googleapis.com/css?family=Kodchasan:300|Spicy+Rice" rel="stylesheet">
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
         <script>tinymce.init({ selector:'textarea' });</script>

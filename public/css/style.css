@@ -394,6 +394,35 @@ h1
     margin: 10px 0px;
 }
 
+/* -- COOKIE -- */
+
+.cookie_bar
+{
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 10px 20px;
+    color: white !important;
+    background-color: #3f4e72;
+    line-height: 35px;
+}
+
+.cookie_btn,.cookie_btn_ok
+{
+    margin: 3px 10px;
+    padding: 5px 10px;
+    background-color: #6c6c94;
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.cookie_btn a, .cookie_btn a:hover
+{
+    color: white;
+}
+
 /* -- MEDIA QUERIES -- */
 
 @media all and (max-width : 1200px)
@@ -426,6 +455,18 @@ h1
     .button-design 
     {
         padding: 5px;
+    }
+    
+    .cookie_bar
+    {
+
+        font-size: 9px;
+        line-height: 18px;
+    }
+
+    .cookie_btn
+    {
+        padding: 2px;
     }
     
 }
