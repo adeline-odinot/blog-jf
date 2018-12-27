@@ -1,12 +1,13 @@
 /* --- GLOBAL --- */
+
 *
 {
-font-family: 'Kodchasan', sans-serif;
+    font-family: 'Kodchasan', sans-serif;
 }
 
 a
 {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .container-fluid
@@ -98,7 +99,7 @@ h3 a
     border-radius: 3px;
     margin: 20px;
     cursor: pointer;
-    border: 1px solid #122731;
+    border: 1px solid #122732;
 }
 
 .button-design, .button-design:hover, li
@@ -276,13 +277,13 @@ h1
 .page-item.active .page-link
 {
     background-color: #122731 !important;
-    border-color: #122731 !important;
+    border-color: #122732 !important;
     color: white !important;
 }
 
 .page-link:hover
 {
-    background-color: #2e526359 !important;
+    background-color: #b6c3c9 !important;
     color: black !important;
 }
 
@@ -423,6 +424,7 @@ h1
     color: white;
 }
 
+
 /* -- MEDIA QUERIES -- */
 
 @media all and (max-width : 1200px)
@@ -430,6 +432,13 @@ h1
     .content 
     {
         padding: 10px;
+    }
+    
+    .cookie_bar_btn
+    {
+        display: block;
+        margin-top: 5px;
+        z-index: 9999 !important;
     }
 }
 
@@ -456,17 +465,4 @@ h1
     {
         padding: 5px;
     }
-    
-    .cookie_bar
-    {
-
-        font-size: 9px;
-        line-height: 18px;
-    }
-
-    .cookie_btn
-    {
-        padding: 2px;
-    }
-    
 }

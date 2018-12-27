@@ -13,10 +13,15 @@ require_once('models/backend/UserAdminManager.php');
 
 class BackendController 
 {
+    // Sécurise l'administration
+
     public function secure($user_pseudo)
     {
+        $arrayUser = array('user_pseudo' => $user_pseudo);
+        $user = new \Forteroche\Models\User($arrayUser);
+
         $userManager = new \Forteroche\Models\UserManager();
-        $userRank = $userManager->isAdmin($user_pseudo);
+        $userRank = $userManager->isAdmin($user);
 
         if ($userRank !== '1')
         {
@@ -27,6 +32,8 @@ class BackendController
             return true;
         }
     }
+
+    // Affiche la page d'administration avec le tableau des chapitres et commentaires.
 
     public function admin()
     {        
@@ -39,6 +46,69 @@ class BackendController
         require('view/backend/adminView.php');
     }
 
+    // Affiche la page du formulaire d'ajout d'un chapitre.
+
+    public function addChapterView()
+    {
+        require('view/backend/addChapterView.php');
+    }
+
+    // Ajoute un chapitre et affiche les messages d'erreurs du formulaire.
+
+    public function addChapter($title, $content, $author)
+    {       
+        $chapterAdminManager = new \Forteroche\Models\ChapterAdminManager();
+
+        $addChapterMsg = array('titleError' => '', 'contentError' => '',  'authorError' => '', 'isSuccess' => false);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        {
+            $title = $this->test_input($title);
+            $content = $this->test_input($content);
+            $author = $this->test_input($author);
+            $addChapterMsg['isSuccess'] = true;
+
+            if (empty($title))
+            {
+                $addChapterMsg['titleError'] = 'Vous devez entrer le titre du chapitre.';
+                $addChapterMsg['isSuccess'] = false; 
+            }
+
+            if (empty($content))
+            {
+                $addChapterMsg['contentError'] = 'Vous devez entrer le texte du chapitre.';
+                $addChapterMsg['isSuccess'] = false; 
+            }
+
+            if (empty($author))
+            {
+                $addChapterMsg['authorError'] = 'Vous devez entrer l\'auteur du chapitre.';
+                $addChapterMsg['isSuccess'] = false; 
+            }
+
+            if($addChapterMsg['isSuccess'])  
+            {
+                $arrayAddChapter = array('title' => $title, 'content' => $content, 'author' => $author);
+
+                $chapter = new \Forteroche\Models\Chapter($arrayAddChapter);
+
+                $addChapter = $chapterAdminManager->addChapter($chapter);
+            }
+            echo json_encode($addChapterMsg);
+        }
+    }
+
+    // Affiche la page de modification d'un chapitre.
+
+    public function chapterEditView($id)
+    {
+        $chapterManager = new \Forteroche\Models\ChapterManager();
+        $chapters = $chapterManager->getChapter($id);
+
+        require('view/backend/chapterEditView.php');
+    }
+
+    // Modifie un chapitre et affiche les messages d'erreurs du formulaire.
 
     public function chapterEdit($title, $content, $author, $id)
     {       
@@ -46,10 +116,13 @@ class BackendController
 
         $editChapterMsg = array('titleError' => '', 'contentError' => '',  'authorError' => '', 'isSuccess' => false);
 
-        $editChapterMsg['isSuccess'] = true;
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         {
+            $title = $this->test_input($title);
+            $content = $this->test_input($content);
+            $author = $this->test_input($author);
+            $editChapterMsg['isSuccess'] = true;
+
             if (empty($title))
             {
                 $editChapterMsg['titleError'] = 'Vous devez entrer le titre du chapitre.';
@@ -82,58 +155,21 @@ class BackendController
         }
     }
 
-    public function chapterEditView($id)
+    // Supprime un chapitre et ses commentaires.
+
+    public function deleteChapter($id)
     {
-        $chapterManager = new \Forteroche\Models\ChapterManager();
-        $chapters = $chapterManager->getChapter($id);
-
-        require('view/backend/chapterEditView.php');
-    }
-
-    public function addChapter($title, $content, $author)
-    {       
-        $chapterAdminManager = new \Forteroche\Models\ChapterAdminManager();
-
-        $addChapterMsg = array('titleError' => '', 'contentError' => '',  'authorError' => '', 'isSuccess' => false);
-
-        $addChapterMsg['isSuccess'] = true;
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+        if (true)
         {
-            if (empty($title))
-            {
-                $addChapterMsg['titleError'] = 'Vous devez entrer le titre du chapitre.';
-                $addChapterMsg['isSuccess'] = false; 
-            }
+            $chapterAdminManager = new \Forteroche\Models\ChapterAdminManager();
+            $deleteChapter = $chapterAdminManager->deleteChapter($id);
 
-            if (empty($content))
-            {
-                $addChapterMsg['contentError'] = 'Vous devez entrer le texte du chapitre.';
-                $addChapterMsg['isSuccess'] = false; 
-            }
-
-            if (empty($author))
-            {
-                $addChapterMsg['authorError'] = 'Vous devez entrer l\'auteur du chapitre.';
-                $addChapterMsg['isSuccess'] = false; 
-            }
-
-            if($addChapterMsg['isSuccess'])  
-            {
-                $arrayAddChapter = array('title' => $title, 'content' => $content, 'author' => $author);
-
-                $chapter = new \Forteroche\Models\Chapter($arrayAddChapter);
-
-                $addChapter = $chapterAdminManager->addChapter($chapter);
-            }
-            echo json_encode($addChapterMsg);
+            $commentAdminManager = new \Forteroche\Models\CommentAdminManager();
+            $deleteComment = $commentAdminManager->deleteAllCommentChapter($id);
         }
     }
-
-    public function addChapterView()
-    {
-        require('view/backend/addChapterView.php');
-    }
+    
+    // Affiche la page de modification d'un commentaire.
 
     public function commentEditView($id)
     {   
@@ -143,16 +179,20 @@ class BackendController
         require('view/backend/commentEditView.php');
     }
 
+    //  Modifie un commentaire et affiche les messages d'erreurs du formulaire.
+
     public function commentEdit($author, $comment, $id)
     {       
         $commentAdminManager = new \Forteroche\Models\CommentAdminManager();
 
         $editCommentMsg = array('authorError' => '', 'commentError' => '','isSuccess' => false);
 
-        $editCommentMsg['isSuccess'] = true;
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         {
+            $author = $this->test_input($author);
+            $comment = $this->test_input($comment);
+            $editCommentMsg['isSuccess'] = true;
+
             if (empty($author))
             {
                 $editCommentMsg['authorError'] = 'Vous devez entrer l\'auteur du commentaire.';
@@ -179,17 +219,7 @@ class BackendController
         }
     }
 
-    public function deleteChapter($id)
-    {
-        if (true)
-        {
-            $chapterAdminManager = new \Forteroche\Models\ChapterAdminManager();
-            $deleteChapter = $chapterAdminManager->deleteChapter($id);
-
-            $commentAdminManager = new \Forteroche\Models\CommentAdminManager();
-            $deleteComment = $commentAdminManager->deleteAllCommentChapter($id);
-        }
-    }
+    // Supprime un commentaire signalé.
 
     public function deleteComment($id)
     {
@@ -200,10 +230,14 @@ class BackendController
         }
     }
 
+    // Affiche la page d'inscription d'un d'administrateur.
+
     public function addUserAdminView()
     {
         require('view/backend/addUserAdminView.php');
     }
+
+    //  Ajoute un administrateur et affiche les messages d'erreurs du formulaire.
 
     public function formAddUserAdmin($user_pseudo, $user_password, $user_confirm, $user_email)
     {
@@ -214,19 +248,16 @@ class BackendController
 
         $user_id = $userAdminManager->getUsers($user);
 
-        $addAdminMsg = array('id' => '', 'pass' => '', 'pass-confirm' => '', 'idError' => '', 'passError' => '', 'passConfirmError' => '','emailError' => '', 'isSuccess' => false);
-        $emailTo = 'adeline.odinot1997@gmail.com';
+        $addAdminMsg = array('idError' => '', 'passError' => '', 'passConfirmError' => '','emailError' => '', 'isSuccess' => false);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         { 
             $user_pseudo = $this->test_input($user_pseudo);
-            $user_password = $this->test_input($user_password);
-            $user_confirm = $this->test_input($user_confirm);
+            $user_password = htmlspecialchars($user_password);
             $user_email = $this->test_input($user_email);
             $addAdminMsg['isSuccess'] = true; 
-            $emailText = '';
 
-            $pass_hash = password_hash($addAdminMsg['pass'], PASSWORD_DEFAULT);
+            $pass_hash = password_hash($user_password, PASSWORD_DEFAULT);
 
             /* Identifiant */
 
@@ -244,10 +275,6 @@ class BackendController
             {
                 $addAdminMsg['idError'] = 'L\'identifiant doit être compris entre 8 et 255 caractères.'; 
                 $addAdminMsg['isSuccess'] = false; 
-            } 
-            else
-            {
-                $emailText .= 'Identifiant: {$addAdminMsg["id"]}\n';
             }
 
             /*  Mot de passe  */ 
@@ -280,10 +307,6 @@ class BackendController
             {
                 $addAdminMsg['emailError'] = 'Vous devez entrer une adresse e-mail valide.';
                 $addAdminMsg['isSuccess'] = false; 
-            } 
-            else
-            {
-                $emailText .= 'Email: {$addAdminMsg["email"]}\n';
             }
             
             /* Succès */
@@ -292,9 +315,6 @@ class BackendController
             {
                 $arrayAddUserAdmin = array('user_pseudo' => $user_pseudo, 'user_password' => $pass_hash, 'user_email' => $user_email);
                 $user = new \Forteroche\Models\User($arrayAddUserAdmin);
-                $headers = 'From: {$addAdminMsg["id"]} <{$addAdminMsg["email"]}>\r\nReply-To: {$addAdminMsg["email"]}';
-                mail($emailTo, 'Merci de votre inscription !', $emailText, $headers);
-
                 $userAdminManager = new \Forteroche\Models\UserAdminManager();
                 $addUser = $userAdminManager->addUserAdmin($user);
             }
@@ -302,17 +322,20 @@ class BackendController
             echo json_encode($addAdminMsg);
         }
     }
+        // Vérifie si l'adresse e-mail rempli dans le formulaire est correct.
 
-    protected function isEmail($email) 
-    {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
-    }
-
-    protected function test_input($data) 
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars_decode($data);
-        return $data;
-    }
+        protected function isEmail($email) 
+        {
+            return filter_var($email, FILTER_VALIDATE_EMAIL);
+        }
+    
+        // Sécurisation des inputs
+    
+        protected function test_input($data) 
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars_decode($data);
+            return $data;
+        }
 }

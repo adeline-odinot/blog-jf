@@ -26,7 +26,7 @@
         <div class="d-flex flex-column">
             <input class="button-design boutton-connection" type="submit" value="Se connecter"/>
         </div>
-    <div>
+    </div>
 </form>
 
 <?php $content = ob_get_clean(); ?>

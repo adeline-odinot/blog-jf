@@ -238,14 +238,22 @@ try {
                     $frontendController->home();
                 }
                 break;
-
+            
             case 'addUserAdmin':
                 if (isset($_COOKIE['id']))
                 {
-                    if ($backendController->secure($_COOKIE['id']))
-                    {
-                        $backendController->addUserAdminView();
-                    }
+                    $backendController->addUserAdminView();
+                }
+                else
+                {
+                    $frontendController->home();
+                }
+                break;
+
+            case 'verifUserAdminForm':
+                if (isset($_COOKIE['id']))
+                {
+                    $backendController->formAddUserAdmin($_POST['id'], $_POST['pass'], $_POST['pass-confirm'], $_POST['email']);
                 }
                 else
                 {
@@ -253,20 +261,6 @@ try {
                 }
                 break;
                 
-            case 'verifUserAdminForm': 
-                if (isset($_COOKIE['id']))
-                {
-                    if ($backendController->secure($_COOKIE['id']))
-                    {
-                        $backendController->formAddUserAdmin($_POST['id'], $_POST['pass'], $_POST['pass-confirm'], $_POST['email']);
-                    }
-                }
-                else
-                {
-                    $frontendController->home();
-                }
-                break;
-            
             default:
                 $frontendController->home();
                 break;        

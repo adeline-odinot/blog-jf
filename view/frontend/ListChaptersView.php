@@ -33,7 +33,9 @@ foreach ($chapters as $chapter)
                     echo $content;
                 ?>
                 <br />
-                <em><a href="index.php?action=chapter&amp;id=<?= htmlspecialchars_decode($chapter->getId()) ?>">Lire la suite</a></em>
+                <em>
+                    <a href="index.php?action=chapter&amp;id=<?= htmlspecialchars_decode($chapter->getId()) ?>">Lire la suite</a>
+                </em>
                 <blockquote>
                     <p>Publié le <?= htmlspecialchars_decode($chapter->getCreation_date_fr()) ?> par <?= htmlspecialchars_decode($chapter->getAuthor()) ?></p>
                 </blockquote>

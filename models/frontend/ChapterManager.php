@@ -7,13 +7,31 @@ require_once("models/Chapter.php");
 
 class ChapterManager extends Manager
 {
-    public function getNbChapters()
+
+    // Récupère le dernier chapitre dans la BDD.
+
+    public function getLastChapter()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT COUNT(id) AS $nb_chapters FROM chapters');
-
-        return $req->fetchColumn();
+        $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 1');
+        $chapter = $req->fetch(\PDO::FETCH_ASSOC);
+        
+        return new Chapter($chapter);
     }
+
+    // Récupere un chapitre dans la BDD.
+
+    public function getChapter($chapterId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, title, content, author, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapters WHERE id = ?');
+        $req->execute(array($chapterId));
+        $chapter = $req->fetch(\PDO::FETCH_ASSOC);
+
+        return new Chapter($chapter);
+    }
+
+    // Récupere tous les chapitres dans la BDD.
 
     public function getChapters($page_position, $nb_by_page)
     {
@@ -33,22 +51,13 @@ class ChapterManager extends Manager
         return $chapters;
     }
 
-    public function getChapter($chapterId)
+    // Récupere le nombre total de tous les chapitres dans la BDD.
+
+    public function getNbChapters()
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, author, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapters WHERE id = ?');
-        $req->execute(array($chapterId));
-        $chapter = $req->fetch(\PDO::FETCH_ASSOC);
+        $req = $db->query('SELECT COUNT(id) AS $nb_chapters FROM chapters');
 
-        return new Chapter($chapter);
-    }
-
-    public function getLastChapter()
-    {
-        $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM chapters ORDER BY creation_date DESC LIMIT 0, 1');
-        $chapter = $req->fetch(\PDO::FETCH_ASSOC);
-        
-        return new Chapter($chapter);
+        return $req->fetchColumn();
     }
 }

@@ -7,18 +7,8 @@ require_once("models/Comment.php");
 
 class CommentManager extends Manager
 {
-    
-    public function getNbComments($chapterId)
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT COUNT(id) AS $nb_comments FROM comments WHERE chapter_id = :chapter_id ');
-        $req->bindValue(':chapter_id', $chapterId, \PDO::PARAM_INT);
-        $req->execute();
+    // Récupère dans la BDD tous les commentaires qui ne sont pas archivés.
 
-        return $req->fetchColumn();
-    }
-
-    
     public function getComments($chapterId, $page_position, $nb_by_page)
     {
         $db = $this->dbConnect();
@@ -38,6 +28,8 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    // Récupère dans la BDD un commentaire selon son id.
+
     public function getComment($id)
     {
         $db = $this->dbConnect();
@@ -50,6 +42,20 @@ class CommentManager extends Manager
         return new Comment($data);
     }
 
+    // Récupère dans la BDD le nombre de commentaires total selon l'id.
+
+    public function getNbComments($chapterId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT COUNT(id) AS $nb_comments FROM comments WHERE chapter_id = :chapter_id ');
+        $req->bindValue(':chapter_id', $chapterId, \PDO::PARAM_INT);
+        $req->execute();
+
+        return $req->fetchColumn();
+    }
+            
+    // Ajoute dans la BDD un commentaire au chapitre lui correspondant.
+
     public function chapterComment($comment)
     {
         $db = $this->dbConnect();
@@ -61,6 +67,8 @@ class CommentManager extends Manager
 
         return $affectedLines;
     }
+
+    // Archive un commentaire dans la BDD.
 
     public function archive($comments)
     {

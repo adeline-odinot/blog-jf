@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 <div class="row">
-    <div class="col-md-12 d-flex flex-column align-items-center text-center">
+    <div class="col-md-12 d-flex flex-column align-items-center">
         <h2 class="title-chapter-view">
             <?= htmlspecialchars_decode($chapter->getTitle()) ?>
         </h2>
@@ -67,7 +67,9 @@ foreach ($comments as $comment)
                 ?>
 
                     <li class="page-item active">
-                        <div class="page-link"><?= $i ?><span class="sr-only">(current)</span></div>
+                        <div class="page-link"><?= $i ?>
+                            <span class="sr-only">(current)</span>
+                        </div>
                     </li>
                 <?php
                 }

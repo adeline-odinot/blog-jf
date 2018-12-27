@@ -7,6 +7,8 @@ require_once("models/Comment.php");
 
 class CommentAdminManager extends Manager
 {
+    // Récupère dans la BDD tous les commentaires.
+
     public function getComments()
     {
         $db = $this->dbConnect();
@@ -23,6 +25,8 @@ class CommentAdminManager extends Manager
         return $comment;
     }
 
+    // Modifie dans la BDD un commentaire.
+
     public function updateComment($update)
     {
         $db = $this->dbConnect();
@@ -35,6 +39,8 @@ class CommentAdminManager extends Manager
         return $req;
     }
 
+    // Supprime dans la BDD un commentaire.
+
     public function deleteComment($id)
     {
         $db = $this->dbConnect();
@@ -44,6 +50,8 @@ class CommentAdminManager extends Manager
 
         return $req;
     }
+
+    // Supprime dans la BDD tous les commentaires d'un chapitre.
 
     public function deleteAllCommentChapter($chapter_id)
     {

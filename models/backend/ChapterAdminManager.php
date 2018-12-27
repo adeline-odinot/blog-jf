@@ -7,6 +7,8 @@ require_once("models/Chapter.php");
 
 class ChapterAdminManager extends Manager
 {
+    // Récupère tous les chapitres.
+
     public function getChapters()
     {
         $db = $this->dbConnect();
@@ -23,6 +25,8 @@ class ChapterAdminManager extends Manager
         return $chapters;
     }
 
+    // Ajoute un chapitre.
+
     public function addChapter($addChapter)
     {   
         $db = $this->dbConnect();
@@ -34,6 +38,8 @@ class ChapterAdminManager extends Manager
 
         return $req;
     }
+
+    // Modifie un chapitre.
 
     public function updateChapter($updateChapter)
     {
@@ -47,6 +53,8 @@ class ChapterAdminManager extends Manager
 
         return $req;
     }
+
+    // Supprime un chapitre.
 
     public function deleteChapter($id)
     {

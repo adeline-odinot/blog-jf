@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Billet simple pour l'Alaska | <?= $title ?></title>
         <link rel="shortcut icon" type="image/x-icon" href="public/images/jf.png">
-        <link href="public/css/style.css" rel="stylesheet" /> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <!-- Bootstrap CSS -->
+
+        <link rel="stylesheet" 
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <!-- Google Font -->
+
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan:300|Spicy+Rice" rel="stylesheet">
+
+        <!-- Icones Fontawesome -->
+
+        <link rel="stylesheet" 
+              href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+              integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" 
+              crossorigin="anonymous">
+
+        <!-- Style CSS -->
+
+        <link href="public/css/style.css" rel="stylesheet" />
+
     </head>
     <body class="container-fluid">
         <header class="row header d-flex justify-content-center">
+
+        <!-- Menu -->
 
         <nav class="nav-header navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
@@ -58,6 +80,9 @@
                 </div>			
             </div>
         </nav>
+
+        <!-- En-tête -->
+
             <div class="text-center title row">
                 <div class="col-md-12">
                     <h1>BILLET SIMPLE POUR L'ALASKA</h1>
@@ -65,10 +90,14 @@
                 </div>
             </div>
         </header>
+
+        <!-- Contenu de la page -->
         
         <section class="content">
             <?= $content ?>
         </section>
+
+        <!-- Bas de page -->
 
         <footer class="footer">
             <div class="row footer-informations">
@@ -101,26 +130,45 @@
                     <p><a href="index.php?action=contact">jeanforteroche.alaska@gmail.com</a></p>
                 </div>
             </div>
+
+            <!-- Copyright -->
+
             <div class="row">
                 <p class="col-md-12 text-center copyright"><span class="design-footer">©</span> 2018 Adeline Odinot <span class="design-footer">|</span> Site réalisé dans le cadre d'une formation <span class="underline"><a href="https://openclassrooms.com/">Openclassooms</a></span></p>
             </div>
         </footer>
+
+        <!-- Jquery CDN -->
+
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous">
         </script>
+
+        <!-- Popper CDN -->
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
                 integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
                 crossorigin="anonymous">
         </script>
+
+        <!-- Bootstrap JS CDN -->
+
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
                 integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
                 crossorigin="anonymous">
         </script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
-              integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" 
-              crossorigin="anonymous">
+
+        <!-- Tinymce CDN -->
+
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+
+        <!-- Librairie Jquery Cookie -->
+        
+        <script src="./public/js/frontend/jquery.cookie.js"></script>
+
+        <!-- Fichiers JavaScript personnalisés -->
 
         <script src="./public/js/frontend/cookieBar.js"></script>
         <script src="./public/js/frontend/addCommentForm.js" async></script>
@@ -135,8 +183,8 @@
         <script src="./public/js/backend/deleteComment.js" async></script>
         <script src="./public/js/backend/addUserAdminForm.js" async></script>
 
-        <link href="https://fonts.googleapis.com/css?family=Kodchasan:300|Spicy+Rice" rel="stylesheet">
-        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <!-- Tinymce selector -->
+
         <script>tinymce.init({ selector:'textarea' });</script>
     </body>
 </html>
