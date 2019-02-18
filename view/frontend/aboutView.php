@@ -1,5 +1,7 @@
 <?php $title = 'À propos'; ?>
 
+<?php $description = 'Qui-suis-je? Découvrez tout sur moi sur cette page à propos.'; ?>
+
 <?php ob_start(); ?>
 
     <h2 class="text-center title-content">À propos</h2>

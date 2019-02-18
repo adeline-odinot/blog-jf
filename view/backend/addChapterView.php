@@ -18,7 +18,7 @@
         </div>
         <div>
             <label class="label-design" for="content">Contenu du chapitre: </label><br />
-            <textarea class="form-control" name="content" rows="4" id="content"></textarea>
+            <textarea class="form-control tinymce" name="content" rows="4" id="content"></textarea>
             <p id="contentError" class="error-message"></p>
         </div>
         <div>

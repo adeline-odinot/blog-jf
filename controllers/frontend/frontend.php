@@ -152,7 +152,7 @@ class FrontendController
     public function formContact($name, $email, $phone, $message)
     {
         $contactMsg = array('nameError' => '', 'emailError' => '', 'phoneError' => '', 'messageError' => '', 'isSuccess' => false);
-        $emailTo = 'adeline.odinot1997@gmail.com';
+        $emailTo = 'jeanforteroche.alaska@gmail.com';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') 
         { 

@@ -18,7 +18,7 @@
         </div>
         <div>
             <label class="label-design" for="content">Nouveau texte : </label><br />
-            <textarea class="form-control" name="content" rows="4" id="content"><?= $chapters->getContent() ?></textarea>
+            <textarea class="form-control tinymce" name="content" rows="4" id="content"><?= $chapters->getContent() ?></textarea>
             <p id="contentError" class="error-message"></p>
         </div>
         <div>

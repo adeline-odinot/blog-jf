@@ -357,6 +357,11 @@ h1
     cursor: pointer;
 }
 
+div.mce-fullscreen
+{
+    z-index: 3000;
+}
+
 .title-admin
 {
     font-size: 25px;
@@ -438,7 +443,7 @@ h1
     {
         display: block;
         margin-top: 5px;
-        z-index: 9999 !important;
+        z-index: 9999;
     }
 }
 

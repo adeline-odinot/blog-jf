@@ -1,4 +1,6 @@
-<?php $title = 'Contact' ?>
+<?php $title = 'Contact' ; ?>
+
+<?php $description = 'Vous avez besoin de me contacter pour plus d\'informations ? ou alors me faire part de ce que vous avez aimé ou pas sur mon blog ? Contactez-moi.' ;?>
 
 <?php ob_start(); ?>
 

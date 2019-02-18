@@ -1,5 +1,7 @@
 <?php $title = htmlspecialchars_decode($chapter->getTitle()); ?>
 
+<?php $description = 'Découvrez le chapitre ' . htmlspecialchars_decode($chapter->getTitle()) . ' et laissez votre avis en commentaire si vous le souhaitez.'; ?>
+
 <?php ob_start(); ?>
 
 <div class="row">

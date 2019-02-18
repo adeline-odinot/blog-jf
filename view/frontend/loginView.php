@@ -1,7 +1,8 @@
 <?php $title = 'Connexion'; ?>
 
-<?php ob_start(); ?>
+<?php $description = 'Connectez-vous en complétant le formulaire d\'inscription.' ; ?>
 
+<?php ob_start(); ?>
 
 <h2 class="text-center title-content">Connectez-vous</h2>
 

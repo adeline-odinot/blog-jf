@@ -27,6 +27,45 @@
 
         <link href="public/css/style.css" rel="stylesheet" />
 
+        <!-- Meta description -->
+
+        <meta name="description" content="<?= $description ?>" />
+
+        <!-- Open Graph -->
+
+        <meta property="og:locale" content="fr_FR">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Billet simple pour l'Alaska | <?= $title ?>">
+        <meta property="og:description" content="<?= $description ?>" />
+        <meta property="og:url" content="https://www.adeline-odinot.com/projets/billet-simple-alaska/">
+        <meta property="og:site_name" content="Billet simple pour l'Alaska">
+        <meta property="og:image" content="https://www.adeline-odinot.com/projets/billet-simple-alaska/public/images/jf-navbar.png">
+
+        <!-- Twitter Card -->
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image:src" content="https://www.adeline-odinot.com/projets/billet-simple-alaska/public/images/jf-navbar.png">
+        <meta name="twitter:description" content="<?= $description ?>" />
+        <meta name="twitter:title" content="Billet simple pour l'Alaska | <?= $title ?>">
+
+
+        <!-- Tinymce -->
+
+        <script src="./public/tinymce/js/tinymce/tinymce.min.js"></script>
+
+        <script>        
+            tinymce.init({
+                mode : "specific_textareas",
+                editor_selector : "tinymce",
+                plugins: "media textcolor colorpicker preview emoticons fullscreen image link lists",
+                menubar: "insert edit format view",
+                toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent |  link unlink | emoticons |  image media | preview fullscreen",
+                toolbar2: " forecolor backcolor | formatselect fontselect fontsizeselect",
+                language : "fr_FR",
+                
+            });
+        </script>
+
     </head>
     <body class="container-fluid">
         <header class="row header d-flex justify-content-center">
@@ -37,11 +76,11 @@
             <div class="container">
             
                 <a href="index.php?action=home" class="navbar-brand mx-auto"><img src="public/images/jf-navbar.png"></a>
-                <button class="navbar-toggle navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggle navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbar-blog" aria-controls="navbar-blog" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbar-blog">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link nav-design" href="index.php?action=home"><i class="fas fa-home"></i> Accueil <span class="sr-only">Accueil</span></a>
@@ -160,10 +199,6 @@
                 crossorigin="anonymous">
         </script>
 
-        <!-- Tinymce CDN -->
-
-        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-
         <!-- Librairie Jquery Cookie -->
         
         <script src="./public/js/frontend/jquery.cookie.js"></script>
@@ -183,8 +218,5 @@
         <script src="./public/js/backend/deleteComment.js" async></script>
         <script src="./public/js/backend/addUserAdminForm.js" async></script>
 
-        <!-- Tinymce selector -->
-
-        <script>tinymce.init({ selector:'textarea' });</script>
     </body>
 </html>

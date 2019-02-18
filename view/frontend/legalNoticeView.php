@@ -1,5 +1,7 @@
 <?php $title = 'Mentions légales'; ?>
 
+<?php $description = 'Les règles de politique de confidentialité vous indiquent quelles informations nous collectons, les mises à jour, comment on les gère, exporte et supprime.' ;?>
+
 <?php ob_start(); ?>
 
 

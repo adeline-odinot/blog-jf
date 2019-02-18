@@ -1,5 +1,7 @@
 <?php $title = 'Accueil'; ?>
 
+<?php $description = 'Bienvenue sur mon blog, je publierais régulièrement chacun des chapitres de mon nouveau roman Billet simple pour l\'Alaska.'; ?>
+
 <?php ob_start(); ?>
 
 <?php

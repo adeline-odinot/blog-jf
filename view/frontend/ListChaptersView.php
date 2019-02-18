@@ -1,5 +1,7 @@
 <?php $title = 'Chapitres'; ?>
 
+<?php $description = 'Découvrez la liste de tous les chapitres que j\'ai écrits de mon roman Billet simple l\'Alaska sur cette page.' ;?>
+
 <?php ob_start(); ?>
 
 <h2 class="title-content text-center">Chapitres</h2>

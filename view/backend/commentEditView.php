@@ -13,7 +13,7 @@
         </div>
         <div>
             <label class="label-design" for="comment">Nouveau commentaire : </label><br />
-            <textarea id="comment" class="form-control" name="comment" rows="4"><?= $comment->getComment() ?></textarea>
+            <textarea id="comment" class="form-control tinymce" name="comment" rows="4"><?= $comment->getComment() ?></textarea>
             <p id="commentError" class="error-message"></p>
         </div>
         <div>
