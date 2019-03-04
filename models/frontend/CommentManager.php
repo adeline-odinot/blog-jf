@@ -63,9 +63,9 @@ class CommentManager extends Manager
         $comments->bindValue(':chapter_id', $comment->getChapter_id(), \PDO::PARAM_INT);
         $comments->bindValue(':author', $comment->getAuthor(), \PDO::PARAM_STR);
         $comments->bindValue('comment', $comment->getComment(), \PDO::PARAM_STR);
-        $affectedLines = $comments->execute();
+        $comments->execute();
 
-        return $affectedLines;
+        return $comments;
     }
 
     // Archive un commentaire dans la BDD.

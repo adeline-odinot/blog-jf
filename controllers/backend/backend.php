@@ -22,14 +22,21 @@ class BackendController
 
         $userManager = new \Forteroche\Models\UserManager();
         $userRank = $userManager->isAdmin($user);
-
-        if ($userRank !== '1')
+        
+        if (sha1($user_pseudo.'tonchatestrose') === $_COOKIE['secure'])
         {
-            return false;
+            if ($userRank !== '1')
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         else
         {
-            return true;
+            throw new Exception('Raté ! Essaye encore !');
         }
     }
 

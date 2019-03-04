@@ -33,7 +33,7 @@
             <textarea id="comment" class="form-control" name="comment" placeholder="Votre commentaire" rows="4"></textarea><br />
             <p id="commentError" class="error-message"></p>
        </div>
-        <input class="button-design" type="submit" value="Commenter" onclick="addCommentForm(<?= $chapter->getId() ?>)"/>
+        <input class="button-design" type="button" value="Commenter" onclick="addCommentForm(<?= $chapter->getId() ?>)"/>
     </div>
     <div class="border-bottom border-secondary"></div>
     <br />
