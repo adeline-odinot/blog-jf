@@ -33,7 +33,7 @@
             <textarea id="comment" class="form-control" name="comment" placeholder="Votre commentaire" rows="4"></textarea><br />
             <p id="commentError" class="error-message"></p>
        </div>
-        <input class="button-design" type="button" value="Commenter" onclick="addCommentForm(<?= $chapter->getId() ?>)"/>
+        <input class="btn button-design" type="button" value="Commenter" onclick="addCommentForm(<?= $chapter->getId() ?>)"/>
     </div>
     <div class="border-bottom border-secondary"></div>
     <br />
@@ -49,7 +49,7 @@ foreach ($comments as $comment)
             <p class="author-comment"><strong><?= htmlspecialchars_decode($comment->getAuthor()) ?></strong></p>
             <p class="font-size-comment label-design"><em>Le <?= $comment->getComment_date() ?></em></p>
             <p><?= nl2br(htmlspecialchars_decode($comment->getComment())) ?></p>
-            <span class="button-design" id="report-<?= $comment->getId() ?>" onclick="report(<?= $comment->getId() ?>)"><em>Signaler le commentaire</em></span>
+            <span class="btn button-design" id="report-<?= $comment->getId() ?>" onclick="report(<?= $comment->getId() ?>)"><em>Signaler le commentaire</em></span>
             <div class="border-bottom border-secondary"></div>
         </div>
     </div>

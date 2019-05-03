@@ -287,6 +287,20 @@ h1
     color: black !important;
 }
 
+.btn-more
+{
+    background-color: #395b6b !important;
+    border-color: 2px solid #395b6b !important;
+    color:white;
+}
+
+.btn-more:hover
+{
+    background-color: #29414d !important;
+    border-color: 2px solid #29414d !important;
+    color:white;
+}
+
 
 /* --- A PROPOS --- */
 

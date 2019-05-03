@@ -17,7 +17,7 @@
             <p id="commentError" class="error-message"></p>
         </div>
         <div>
-            <input class="button-design" onclick="editComment(<?= $comment->getId() ?>)" type="submit" value="Envoyer"/>
+            <input class="btn button-design" onclick="editComment(<?= $comment->getId() ?>)" type="submit" value="Envoyer"/>
         </div>
     </div>
 </form>

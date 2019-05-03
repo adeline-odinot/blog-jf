@@ -51,7 +51,7 @@
 
 <div class="button-add-chapter">
     <a href="index.php?action=addChapter">
-        <input class="button-design" type="submit" value="Ajouter un chapitre"/>
+        <input class="btn button-design" type="submit" value="Ajouter un chapitre"/>
     </a>
 </div>
 

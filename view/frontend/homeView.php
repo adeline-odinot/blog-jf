@@ -42,12 +42,15 @@
                         }
                         echo $content;
                     ?>
-                    <br />
-                    <em>
-                        <a href="index.php?action=chapter&amp;id=<?= htmlspecialchars_decode($lastChapter->getId()) ?>">Lire la suite</a>
-                    </em>
                 </p>
+
+                <em>
+                    <a class="btn btn-more" href="index.php?action=chapter&amp;id=<?= htmlspecialchars_decode($lastChapter->getId()) ?>">Lire la suite</a>
+                </em>
             </div>
+            
+            <br />
+            
             <blockquote>
                 <p>Publié le <?= htmlspecialchars_decode($lastChapter->getCreation_date_fr()) ?> par <?= htmlspecialchars_decode($lastChapter->getAuthor()) ?></p>
             </blockquote>

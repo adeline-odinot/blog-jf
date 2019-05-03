@@ -22,7 +22,7 @@
             <p id="contentError" class="error-message"></p>
         </div>
         <div>
-            <input class="button-design" type="submit" value="Envoyer"/>
+            <input class="btn button-design" type="submit" value="Envoyer"/>
         </div>
     </div>
 </form>

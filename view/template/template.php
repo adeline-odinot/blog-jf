@@ -37,14 +37,14 @@
             <meta property="og:type" content="website">
             <meta property="og:title" content="Billet simple pour l'Alaska | <?= $title ?>">
             <meta property="og:description" content="<?= $description ?>" />
-            <meta property="og:url" content="https://www.adeline-odinot.com/projets/billet-simple-alaska/">
+            <meta property="og:url" content="https://billet-simple-alaska.adeline-odinot.com/">
             <meta property="og:site_name" content="Billet simple pour l'Alaska">
-            <meta property="og:image" content="https://www.adeline-odinot.com/projets/billet-simple-alaska/public/images/jf-navbar.png">
+            <meta property="og:image" content="https://billet-simple-alaska.adeline-odinot.com/public/images/jf-navbar.png">
 
             <!-- Twitter Card -->
 
             <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:image:src" content="https://www.adeline-odinot.com/projets/billet-simple-alaska/public/images/jf-navbar.png">
+            <meta name="twitter:image:src" content="https://billet-simple-alaska.adeline-odinot.com/public/images/jf-navbar.png">
             <meta name="twitter:description" content="<?= $description ?>" />
             <meta name="twitter:title" content="Billet simple pour l'Alaska | <?= $title ?>">
 

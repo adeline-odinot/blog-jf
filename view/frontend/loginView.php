@@ -25,7 +25,7 @@
         </div>
         <br />
         <div class="d-flex flex-column">
-            <input class="button-design boutton-connection" type="submit" value="Se connecter"/>
+            <input class="btn button-design boutton-connection" type="submit" value="Se connecter"/>
         </div>
     </div>
 </form>

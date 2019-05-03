@@ -26,7 +26,7 @@
             <input type="email" class="form-control" id="email" name="email" placeholder="Entrez l'adresse e-mail"/><br />
             <p id="emailError" class="error-message"></p>
         </div>
-        <input class="button-design boutton-connection" type="submit" value="Inscription"/>
+        <input class="btn button-design boutton-connection" type="submit" value="Inscription"/>
     <div>
 </form>
 

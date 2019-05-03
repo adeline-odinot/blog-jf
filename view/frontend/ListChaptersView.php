@@ -17,7 +17,7 @@ foreach ($chapters as $chapter)
                     <?= htmlspecialchars_decode($chapter->getTitle()) ?>
                 </a>
             </h3>
-        
+            
             <p>
                 <?php 
                     if (strlen($chapter->getContent()) <= 400)
@@ -34,14 +34,18 @@ foreach ($chapters as $chapter)
                     }
                     echo $content;
                 ?>
-                <br />
-                <em>
-                    <a href="index.php?action=chapter&amp;id=<?= htmlspecialchars_decode($chapter->getId()) ?>">Lire la suite</a>
-                </em>
-                <blockquote>
-                    <p>Publié le <?= htmlspecialchars_decode($chapter->getCreation_date_fr()) ?> par <?= htmlspecialchars_decode($chapter->getAuthor()) ?></p>
-                </blockquote>
             </p>
+
+            <em>
+                <a class="btn btn-more" href="index.php?action=chapter&amp;id=<?= htmlspecialchars_decode($chapter->getId()) ?>">Lire la suite</a>
+            </em>
+                
+            <br />
+
+            <blockquote>
+                <p>Publié le <?= htmlspecialchars_decode($chapter->getCreation_date_fr()) ?> par <?= htmlspecialchars_decode($chapter->getAuthor()) ?></p>
+            </blockquote>
+            
             <div class="border-bottom border-secondary"></div>
         </div>
     </div>
